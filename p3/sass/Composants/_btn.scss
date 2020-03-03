@@ -1,0 +1,14 @@
+div.container {
+  margin: auto;
+  // margin-right: auto;
+  // margin-left: auto;
+  width: 30rem;
+}
+div.btn {
+  background: $background;
+  font-size: 3rem;
+  cursor: pointer;
+  padding: 1.85rem 3rem;
+  border-radius: 1rem;
+  text-align: center;
+}

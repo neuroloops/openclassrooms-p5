@@ -1,0 +1,102 @@
+#autotext {
+  border-right: 0.15em solid #fdca57;
+  letter-spacing: 0.05em;
+  animation: blink 0.75s step-end infinite;
+  margin-right: 0.5rem;
+  color: var(--text);
+}
+
+@keyframes blink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #fdca57;
+  }
+}
+.waiting {
+  color: #fdca57;
+  font-size: 10rem;
+}
+.blinking {
+  animation: blinkingText 0.75s infinite;
+}
+@keyframes blinkingText {
+  0% {
+    visibility: hidden;
+  }
+  60% {
+    color: transparent;
+  }
+  80% {
+    visibility: visible;
+  }
+  /* 100% {
+    color: #fdca57;
+  } */
+}
+
+.blinking1 {
+  animation: blinking1 1s infinite;
+}
+@keyframes blinking1 {
+  0% {
+    visibility: hidden;
+  }
+  0% {
+    color: transparent;
+  }
+  10% {
+    visibility: visible;
+  }
+}
+.blinking2 {
+  animation: blinking2 1s infinite;
+}
+@keyframes blinking2 {
+  0% {
+    visibility: hidden;
+  }
+  39% {
+    visibility: hidden;
+  }
+  40% {
+    color: transparent;
+  }
+  50% {
+    visibility: visible;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+.blinking3 {
+  animation: blinking3 1s infinite;
+}
+@keyframes blinking3 {
+  0% {
+    visibility: hidden;
+  }
+  59% {
+    visibility: hidden;
+  }
+  60% {
+    color: transparent;
+  }
+  60% {
+    visibility: visible;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+.effet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 2.5rem;
+}
