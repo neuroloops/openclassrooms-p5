@@ -19,6 +19,10 @@
     text-align: center;
   }
 
+  html {
+    font-size: 62.5%;
+  }
+
   .wrapper {
     background-color: white;
     width: 100%;
@@ -36,7 +40,7 @@
   .menus img {
     margin: 1.5rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 500px;
+    width: 200px;
     transition: transform 400ms;
     transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
   }
@@ -107,7 +111,9 @@
     animation-iteration-count: infinite;
   }
 
-  /* css pour chaque menu */
+  /* 
+  css pour la page du menu 
+  */
   div.menu ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -119,6 +125,7 @@
   div.menu ul li {
     list-style-type: none;
     grid-column: 1/3;
+    font-size: 2rem;
   }
   div.menu ul li:nth-child(even) {
     grid-column: 3;
@@ -141,6 +148,7 @@
   }
   div.menu h2 {
     margin-bottom: 0;
+    font-size: 3rem;
   }
   div.menu h2:hover + div.progress > div.progress__bar {
     transform: scaleX(1);
@@ -238,15 +246,34 @@ footer {
   width: 100vw;
 }
 footer a {
-  margin-right: 2rem;
-  margin-left: 2rem;
   font-size: 1.5rem;
 }
 
+@media (min-width: 600px) {
+  footer a {
+    margin-right: 2rem;
+    margin-left: 2rem;
+    font-size: 1.5rem;
+  }
+}
 .wrapper {
   /* Rajout de padding 
-  lassant l'espace necessaire pour le footer */
+  laissant l'espace necessaire pour le footer */
   padding-bottom: 6rem;
+}
+
+@media (min-width: 600px) {
+  html {
+    font-size: 100%;
+  }
+
+  .menus {
+    margin: auto;
+    max-width: 1200px;
+  }
+  .menus img {
+    width: 400px;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

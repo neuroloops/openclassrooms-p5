@@ -5,6 +5,9 @@ $text: #fdca57;
   @import "./Layout/header";
   @import "./Composants/btn";
 
+  html {
+    font-size: 62.5%;
+  }
   .wrapper {
     background-color: white;
     width: 100%;
@@ -22,7 +25,7 @@ $text: #fdca57;
       margin: 1.5rem;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
         0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      width: 500px;
+      width: 200px;
       transition: transform 400ms;
       transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
       &:hover {
@@ -61,3 +64,16 @@ $text: #fdca57;
   @import "./Pages/menu";
 }
 @import "./Layout/footer";
+
+@media (min-width: 600px) {
+  html {
+    font-size: 100%;
+  }
+  .menus {
+    margin: auto;
+    max-width: 1200px;
+    & img {
+      width: 400px;
+    }
+  }
+}

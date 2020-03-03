@@ -8,12 +8,18 @@ footer {
   bottom: 0;
   width: 100vw;
   & a {
-    margin-right: 2rem;
-    margin-left: 2rem;
     font-size: 1.5rem;
   }
 }
-
+@media (min-width: 600px) {
+  footer {
+    & a {
+      margin-right: 2rem;
+      margin-left: 2rem;
+      font-size: 1.5rem;
+    }
+  }
+}
 .wrapper {
   /* Rajout de padding 
   laissant l'espace necessaire pour le footer */
