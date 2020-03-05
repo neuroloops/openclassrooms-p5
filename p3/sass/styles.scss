@@ -47,13 +47,12 @@ $text: #fdca57;
     }
     & img {
       margin: 1.5rem;
-      // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-      //   0 6px 20px 0 rgba(0, 0, 0, 0.19);
       width: 200px;
       transition: transform 400ms;
       transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
       &:hover {
         transform: scale(1.15);
+        opacity: 0.4;
       }
     }
   }

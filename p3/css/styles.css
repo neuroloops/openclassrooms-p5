@@ -127,6 +127,7 @@ div.btn .loader:after {
   }
   .menus img:hover {
     transform: scale(1.15);
+    opacity: 0.4;
   }
 
   h1 {
