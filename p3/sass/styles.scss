@@ -25,10 +25,29 @@ $text: #fdca57;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly;
-    & img {
-      margin: 1.5rem;
+
+    &__prev {
+      padding: 1.1rem 0.5rem;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
         0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      margin-top: 5rem;
+    }
+    &__prev1 {
+      background-color: #fde0dc;
+    }
+    &__prev2 {
+      background-color: hsl(306, 100%, 98%);
+    }
+    &__prev3 {
+      background-color: hsl(0, 0%, 98%);
+    }
+    &__prev4 {
+      background-color: hsl(120, 100%, 100%);
+    }
+    & img {
+      margin: 1.5rem;
+      // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+      //   0 6px 20px 0 rgba(0, 0, 0, 0.19);
       width: 200px;
       transition: transform 400ms;
       transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
@@ -45,14 +64,10 @@ $text: #fdca57;
     padding: 2rem;
   }
 
-  .soon {
-    display: block;
-    margin: auto;
-  }
-
   a {
     text-decoration: none;
     color: $text;
+    font-family: "Roboto", sans-serif;
   }
   /* faire secouer le texte  */
   @import "./Composants/shake";
@@ -74,7 +89,7 @@ $text: #fdca57;
     font-size: 80%;
   }
   .menus {
-    margin: auto;
+    margin: 2rem auto;
     max-width: 1200px;
     & img {
       width: 400px;
