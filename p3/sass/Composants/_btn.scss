@@ -8,7 +8,6 @@ div.btn {
   font-size: 3rem;
   cursor: pointer;
   padding: 1.85rem 3rem;
-  // border-radius: 1rem;
   text-align: center;
   color: $background;
   font-family: "Roboto", sans-serif;
@@ -31,7 +30,7 @@ div.btn {
   .loader {
     color: $background;
     font-size: 10px;
-    margin: 0 auto 1.5rem;
+    margin: -20px auto 30px;
     position: relative;
     text-indent: -9999em;
     -webkit-transform: translateZ(0);

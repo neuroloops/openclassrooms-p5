@@ -38,7 +38,7 @@ div.btn .loader:after {
   div.btn .loader {
     color: #599a87;
     font-size: 10px;
-    margin: 0 auto 1.5rem;
+    margin: -20px auto 30px;
     position: relative;
     text-indent: -9999em;
     -webkit-transform: translateZ(0);
@@ -100,6 +100,7 @@ div.btn .loader:after {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly;
+    margin: 2rem auto;
   }
   .menus__prev {
     padding: 1.1rem 0.5rem;
@@ -129,6 +130,7 @@ div.btn .loader:after {
   }
 
   h1 {
+    margin: 2rem auto;
     text-align: center;
     font-size: 5rem;
     margin-top: 0;
@@ -366,7 +368,6 @@ footer a {
   }
 
   .menus {
-    margin: 2rem auto;
     max-width: 1200px;
   }
   .menus img {

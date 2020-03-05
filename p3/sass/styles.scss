@@ -25,6 +25,7 @@ $text: #fdca57;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly;
+    margin: 2rem auto;
 
     &__prev {
       padding: 1.1rem 0.5rem;
@@ -58,6 +59,7 @@ $text: #fdca57;
   }
 
   h1 {
+    margin: 2rem auto;
     text-align: center;
     font-size: 5rem;
     margin-top: 0;
@@ -89,7 +91,6 @@ $text: #fdca57;
     font-size: 80%;
   }
   .menus {
-    margin: 2rem auto;
     max-width: 1200px;
     & img {
       width: 400px;
