@@ -1,55 +1,90 @@
-fetch("http://127.0.0.1:3000/api/cameras")
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    // Work with JSON data here
-    console.log("les data:", data);
-    for (let item of data) {
-      addElement(item);
-      console.log(item);
-    }
-    return data;
-  })
-  .catch((err) => {
-    // Do something for an error here
-    console.error("pas de data:", err);
-    let item = {
-      name: "erreur avec la base de donnée",
-      lenses: err,
-      imageUrl:
-        "https://image.freepik.com/vecteurs-libre/glitch-error-404-page_23-2148105404.jpg",
-    };
-    addElement(item);
+const products = document.getElementById("products");
+let createDiv = document.createElement("div");
+
+const dataOperation = (data) => {
+  console.log(data);
+
+  data.forEach(function (item, i) {
+    data[i].cart = 2;
+    showItems(item);
   });
+  // homePage = document.getElementById("products").innerHTML;
+};
 
-function addElement(item) {
-  let divElt = document.getElementById("main");
-  const newElt = document.createElement("section");
-  const nameElt = document.createElement("h2");
-  const pElt = document.createElement("p");
-  const articleElt = document.createElement("article");
-  const lensElt = document.createElement("span");
-  const priceElt = document.createElement("span");
-  const descrElt = document.createElement("span");
-  const imgElt = document.createElement("img");
+const centToEuro = (price, money = "€") => {
+  cent = price.slice(-2);
+  euro = price.slice(0, -2);
+  if (money == "€") {
+    return `${euro},${cent} ${money}`;
+  } else if (money == "$") {
+    return `${money}${euro},${cent}`;
+  }
+};
 
-  nameElt.textContent = item.name;
-  lensElt.textContent = "Lens: " + item.lenses;
-  imgElt.src = item.imageUrl;
-  priceElt.textContent = item.price;
-  descrElt.textContent = item.description;
+console.log(products);
 
-  divElt.appendChild(newElt);
-  newElt.appendChild(nameElt);
-  newElt.appendChild(articleElt);
+function showItems(item) {
+  const { name, price, imageUrl, _id: id } = item;
+  const createDiv = document.createElement("div");
 
-  articleElt.appendChild(lensElt);
-  articleElt.appendChild(document.createElement("BR"));
-  articleElt.appendChild(descrElt);
-  articleElt.appendChild(document.createElement("BR"));
-  articleElt.appendChild(priceElt);
-  articleElt.appendChild(document.createElement("BR"));
+  createDiv.setAttribute("class", "product");
+  createDiv.setAttribute("id", `${id}`);
+  products.appendChild(createDiv);
 
-  newElt.appendChild(imgElt);
+  createDiv.innerHTML = `
+  <h2>${name}</h2>
+  <img src="${imageUrl}" alt="image de ${name}">
+    ${centToEuro(price.toString())}<br>
+  </p>
+  `;
+  const itemId = document.getElementById(id);
+  itemId.addEventListener("click", (e) => {
+    showProduct(item);
+  });
+}
+function showHomePage() {
+  window.scrollTo(0, 0);
+  document.getElementById("products").style.display = "grid";
+  const divMain = document.getElementById("main");
+  const divProduct = document.getElementById("product");
+
+  divMain.removeChild(divProduct);
+}
+
+function showProduct(item) {
+  window.scrollTo(0, 0);
+  const divMain = document.getElementById("main");
+  const divProducts = document.getElementById("products");
+  const createDiv = document.createElement("div");
+  createDiv.setAttribute("id", "product");
+  divMain.insertBefore(createDiv, divProducts);
+
+  divProducts.style.display = "none";
+  createDiv.innerHTML = `
+<h2>fiche produit de ${item.name}</h2>
+
+<img src="${item.imageUrl}" alt="image de ${item.name}">
+${item.description}</br>
+option d'optique : <select id='lenses' > ${item.lenses
+    .map((lense, index) => {
+      return `<option value="${index}">${lense} </option>`;
+    })
+    .join("")} </select></br>
+  ${centToEuro(item.price.toString())}<br>
+dans le panier : ${item.cart}
+</p>
+`;
+}
+
+let title = document.getElementById("title");
+title.addEventListener("click", () => {
+  showHomePage();
+});
+
+let cartIcon = document.getElementById("panier");
+cartIcon.addEventListener("click", clearPage);
+
+function clearPage() {
+  document.getElementById("products").innerHTML = "";
+  console.log("clearPage");
 }

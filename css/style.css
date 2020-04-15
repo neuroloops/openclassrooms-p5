@@ -2,9 +2,8 @@ body {
   color: black;
   width: 75%;
   margin: auto;
-  
 }
-.wrapper {
+#products {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
@@ -13,8 +12,19 @@ body {
 }
 h1 {
   text-align: center;
+  display: inline;
 }
 
 img {
   max-width: 100%;
+}
+.blue {
+  color: darkblue;
+}
+
+#panier {
+  background-color: orange;
+  border: solid;
+  padding: 0.5rem 1rem;
+  border-radius: 25rem;
 }
