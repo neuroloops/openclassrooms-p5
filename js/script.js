@@ -1,27 +1,32 @@
+/*
+TODO:
+
+
+
+[]- creer formulaire
+
+*/
+
+import centToEuro from "./modules/centToEuro.js";
+import getProducts from "./modules/fetch.js";
+
+// console.log(getProducts());
+
 const products = document.getElementById("products");
 let createDiv = document.createElement("div");
 
 const dataOperation = (data) => {
-  console.log(data);
+  console.log("dataOperation", data);
 
   data.forEach(function (item, i) {
     data[i].cart = 2;
+    // return item
     showItems(item);
   });
   // homePage = document.getElementById("products").innerHTML;
 };
 
-const centToEuro = (price, money = "€") => {
-  cent = price.slice(-2);
-  euro = price.slice(0, -2);
-  if (money == "€") {
-    return `${euro},${cent} ${money}`;
-  } else if (money == "$") {
-    return `${money}${euro},${cent}`;
-  }
-};
-
-console.log(products);
+getProducts(dataOperation);
 
 function showItems(item) {
   const { name, price, imageUrl, _id: id } = item;
