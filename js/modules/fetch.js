@@ -6,10 +6,10 @@ export default function getProducts(dataOperation) {
       let response = await fetch(url);
       if (response.ok) {
         let data = await response.json();
-        return dataOperation(data);
-        // console.log(data);
+        console.log("data");
 
         // return data;
+        return dataOperation(data);
       } else {
         let err = response.status;
         if (err == 404) {

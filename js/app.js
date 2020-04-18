@@ -1,3 +1,8 @@
+// verification des donnée sinon
+// fectch
+// appel de la home page
+
+// au click envoie sur le pannier
 /*
 TODO:
 
@@ -14,7 +19,7 @@ import getProducts from "./modules/fetch.js";
 
 const products = document.getElementById("products");
 let createDiv = document.createElement("div");
-
+// let data = getProducts();
 const dataOperation = (data) => {
   console.log("dataOperation", data);
 
@@ -24,7 +29,8 @@ const dataOperation = (data) => {
     showItems(item);
   });
 };
-
+// getProducts('234');
+// dataOperation(getProducts)
 getProducts(dataOperation);
 
 function showItems(item) {
