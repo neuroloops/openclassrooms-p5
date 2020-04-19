@@ -5,21 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/normalize.min.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/tabs.css" />
 
     <title>Orinoco</title>
   </head>
   <body>
-    <header>
+    <!-- <header>
       <h1 id="title">Orinoco</h1>
       <span id="panier">cart</span>
-    </header>
+    </header> -->
 
     <div id="main" class="wrapper">
-      <div id="products"></div>
-    </div>
-    <!-- <script src="./js/modules/centToEuro.js" type="module"></script> -->
-    <script src="./js/app.js" type="module"></script>
+      <div id="tab1" class="tab">
+        <ul class="tabs">
+          <li class="active"><a href="#home">Acceuil</a></li>
+          <li>
+            <a href="#product">product</a>
+          </li>
+          <li><a href="#about">A propos</a></li>
+        </ul>
 
-    <!-- <script src="./js/fetch.js"></script> -->
+        <div class="tabs-contents">
+          <div class="tab-content active" id="home">
+            <div id="products"></div>
+          </div>
+          <div class="tab-content" id="product"></div>
+          <div class="tab-content" id="about">
+            formulaire de contact
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/app.js" type="module"></script>
+    <script src="./js/tabs.js"></script>
   </body>
 </html>
