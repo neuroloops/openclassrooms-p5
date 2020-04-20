@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="./css/normalize.min.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/tabs.css" />
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>Orinoco</title>
   </head>
   <body>
@@ -18,11 +22,20 @@
     <div id="main" class="wrapper">
       <div id="tab1" class="tab">
         <ul class="tabs">
-          <li class="active"><a href="#home">Acceuil</a></li>
+          <li class="active"><a href="#home">Accueil Orinoco</a></li>
+
           <li>
-            <a href="#product">product</a>
+            <a href="#user">Utilisateur</a>
           </li>
-          <li><a href="#about">A propos</a></li>
+          <li>
+            <a href="#cart">Panier</a>
+          </li>
+          <li>
+            <a href="#confirm">Confirmation</a>
+          </li>
+          <li>
+            <a href="#product"></a>
+          </li>
         </ul>
 
         <div class="tabs-contents">
@@ -30,12 +43,51 @@
             <div id="products"></div>
           </div>
           <div class="tab-content" id="product"></div>
-          <div class="tab-content" id="about">
-            formulaire de contact
+          <div class="tab-content row" id="user">
+            <form class="col s12">
+              <div class="input-field col s12">
+                <input id="first_name" type="text" class="validate" />
+                <label for="first_name">Prénom</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="last_name" type="text" class="validate" />
+                <label for="last_name">Nom</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="email_inline" type="email" class="validate" />
+                <label for="email_inline">Email</label>
+                <span class="helper-text" data-error="email incorrect"></span>
+              </div>
+              <div class="input-field col s12">
+                <input id="address" type="text" class="validate" />
+                <label for="address">Adresse</label>
+              </div>
+              <div class="input-field col s3">
+                <input
+                  id="zipCode"
+                  type="text"
+                  maxlength="5"
+                  class="validate"
+                />
+                <label for="zipCode">Code postal</label>
+              </div>
+              <div class="input-field col s9">
+                <input id="city" type="text" class="validate" />
+                <label for="city">Ville</label>
+              </div>
+              <a class="waves-effect waves-light btn-large" href="#">valider</a>
+            </form>
+          </div>
+          <div class="tab-content" id="cart">
+            <h3>Panier</h3>
+          </div>
+          <div class="tab-content" id="confirm">
+            <h3>Total de la commande</h3>
           </div>
         </div>
       </div>
     </div>
+
     <script src="./js/app.js" type="module"></script>
     <script src="./js/tabs.js"></script>
   </body>

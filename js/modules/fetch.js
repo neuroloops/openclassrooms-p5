@@ -7,7 +7,7 @@ export default function getProducts(
       let response = await fetch(url);
       if (response.ok) {
         let data = await response.json();
-        console.log("dta", data);
+        console.log("data", data);
         return dataOperation(data);
       } else {
         let err = response.status;
@@ -16,6 +16,7 @@ export default function getProducts(
           error(err);
         } else {
           console.error("retour du serveur: ", err);
+          error(err);
         }
       }
     } catch (err) {
@@ -23,15 +24,22 @@ export default function getProducts(
       error(err);
     }
   };
-  fetchProducts().then("promise log", console.log);
-  console.log("bonjour");
+  fetchProducts()
 
   const error = (err) => {
+    let divHome = "";
+    if ((err = 500)) {
+      console.log("hello");
+      divHome = document.getElementById("product");
+    } else {
+      divHome = document.getElementById("home");
+    }
+
     console.error("pas de donnée:", err);
 
     const imageUrl =
       "https://image.freepik.com/vecteurs-libre/glitch-error-404-page_23-2148105404.jpg";
-    const divHome = document.getElementById("home");
+
     const createDiv = document.createElement("div");
 
     divHome.appendChild(createDiv);
