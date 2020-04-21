@@ -1,10 +1,11 @@
 /*
 liste de todo
 TODO changer le message d'erreur 500
-  fdsfdsfdsf
 TODO: serparer le error dans un module
-FIXME: test 2
-TOD:[]- creer formulaire
+TODO: faire la page panier
+TODO: faire la page de confirmation
+FIXME: changer l'url en fonction de l'id de l'article
+
 
 */
 
@@ -16,18 +17,22 @@ const showProducts = (data) => {
     const products = document.getElementById("products");
     const createDiv = document.createElement("div");
 
-    createDiv.setAttribute("class", "product");
+    createDiv.setAttribute("class", "");
     createDiv.setAttribute("id", `${item._id}`);
     products.appendChild(createDiv);
 
     createDiv.innerHTML = `
-    <a href="#product">
-  <h2>${item.name}</h2>
-
-  <img src="${item.imageUrl}" alt="image de ${item.name}">
-    ${centToEuro(item.price.toString())}<br>
-  </p></a>
-  `;
+    <a href="#product" class="product">
+      <div class="img-shadow">
+        <img src="${item.imageUrl}" alt="image de ${item.name}">
+      </div>
+      <div class="textProduct">
+        <h2>${item.name}</h2><p class="price">${centToEuro(
+      item.price.toString()
+    )}</p>
+      </div>
+    </a>
+    `;
     const itemId = document.getElementById(item._id);
     itemId.addEventListener("click", (e) => {
       // showProduct(item);
@@ -44,16 +49,26 @@ const showProduct = (item) => {
   product.appendChild(createDiv);
 
   product.innerHTML = `
-<h2>${item.name}</h2>
-<img src="${item.imageUrl}" alt="image de ${item.name}">
-  ${centToEuro(item.price.toString())}<br>
-  ${item.description}
+  <div class="description">
+    <div class="introProduit">
+      <h2>${item.name}</h2>
+        <img src="${item.imageUrl}" alt="image de ${item.name}">
+    </div>
+    <p>
+      ${centToEuro(item.price.toString())}<br>
+      ${item.description} <br>
+
+    </p>
+    <label for="lenses">Choix d'optique</label>
+    <select id="lense">
+      <option value="bonjour"> bonjour </option>
+      ${item.lenses.map(
+        (lense) => `<option value="${lense}"> ${lense} </option>`
+      )}
+    </select>
+
+    
   `;
-  document.addEventListener("DOMContentLoaded", function () {
-    var elems = document.querySelectorAll(".materialboxed");
-    var instances = M.Materialbox.init(elems, option);
-    instances();
-  });
 
   for (let lense of item.lenses) {
     console.log(lense);

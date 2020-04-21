@@ -4,7 +4,7 @@
       animations = true;
     }
     let li = a.parentNode;
-    let div = a.parentNode.parentNode.parentNode;
+    let div = a.parentNode.parentNode.parentNode.parentNode;
     let activeTab = div.querySelector(".tab-content.active"); // contenu actif
     let target = div.querySelector(a.getAttribute("href")); // contenu à afficher
 

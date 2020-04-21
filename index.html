@@ -4,26 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/normalize.min.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/tabs.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/tabs.css" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>Orinoco</title>
   </head>
   <body>
-    <!-- <header>
-      <h1 id="title">Orinoco</h1>
-      <span id="panier">cart</span>
-    </header> -->
-
-    <div id="main" class="wrapper">
-      <div id="tab1" class="tab">
-        <ul class="tabs">
+    <div id="main" class="wrapper tab">
+        <nav class="tabs menu">
+          <ul >
           <li class="active"><a href="#home">Accueil Orinoco</a></li>
-
           <li>
             <a href="#user">Utilisateur</a>
           </li>
@@ -37,12 +32,15 @@
             <a href="#product"></a>
           </li>
         </ul>
+        </nav>
 
         <div class="tabs-contents">
           <div class="tab-content active" id="home">
             <div id="products"></div>
           </div>
-          <div class="tab-content" id="product"></div>
+          <div class="tab-content" id="product">
+
+          </div>
           <div class="tab-content row" id="user">
             <form class="col s12">
               <div class="input-field col s12">
@@ -79,7 +77,9 @@
             </form>
           </div>
           <div class="tab-content" id="cart">
+            <div>
             <h3>Panier</h3>
+          </div>
           </div>
           <div class="tab-content" id="confirm">
             <h3>Total de la commande</h3>

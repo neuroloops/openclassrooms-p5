@@ -7,6 +7,7 @@ export default function getProducts(
       let response = await fetch(url);
       if (response.ok) {
         let data = await response.json();
+        // pour afficher les data fetch dans la console
         console.log("data", data);
         return dataOperation(data);
       } else {
@@ -24,12 +25,11 @@ export default function getProducts(
       error(err);
     }
   };
-  fetchProducts()
+  fetchProducts();
 
   const error = (err) => {
     let divHome = "";
     if ((err = 500)) {
-      console.log("hello");
       divHome = document.getElementById("product");
     } else {
       divHome = document.getElementById("home");
