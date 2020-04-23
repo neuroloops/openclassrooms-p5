@@ -9,19 +9,18 @@ FIXME: changer l'url en fonction de l'id de l'article
 
 */
 
-import centToEuro from "./modules/centToEuro.js";
-import getProducts from "./modules/fetch.js";
+const createDivWithId = (targetIdDiv, id, html) => {
+  const target = document.getElementById(targetIdDiv);
+  const createDiv = document.createElement("div");
+  createDiv.setAttribute("class", targetIdDiv);
+  createDiv.setAttribute("id", `${id}`);
+  createDiv.innerHTML = html;
+  target.appendChild(createDiv);
+};
 
 const showProducts = (data) => {
   data.forEach(function (item) {
-    const products = document.getElementById("products");
-    const createDiv = document.createElement("div");
-
-    createDiv.setAttribute("class", "");
-    createDiv.setAttribute("id", `${item._id}`);
-    products.appendChild(createDiv);
-
-    createDiv.innerHTML = `
+    html = `
     <a href="#product" class="product">
       <div class="img-shadow">
         <img src="${item.imageUrl}" alt="image de ${item.name}">
@@ -32,53 +31,42 @@ const showProducts = (data) => {
     )}</p>
       </div>
     </a>
+    <hr>
     `;
+    createDivWithId("products", item._id, html);
     const itemId = document.getElementById(item._id);
     itemId.addEventListener("click", (e) => {
-      // showProduct(item);
       getProducts(showProduct, "http://127.0.0.1:3000/api/cameras/" + item._id);
     });
   });
 };
 
 const showProduct = (item) => {
-  const product = document.getElementById("product");
-  const createDiv = document.createElement("div");
-  createDiv.setAttribute("class", "product");
-  createDiv.setAttribute("id", `${item._id}`);
-  product.appendChild(createDiv);
+  // supprime les precendent produit
+  document.getElementById("product").innerHTML = "";
 
-  product.innerHTML = `
+  html = `
   <div class="description">
-    <div class="introProduit">
+    <div class="introProduit ">
       <h2>${item.name}</h2>
         <img src="${item.imageUrl}" alt="image de ${item.name}">
     </div>
     <p>
       ${centToEuro(item.price.toString())}<br>
       ${item.description} <br>
+      <form id="addToCart">
 
+    option d'optique: <select id='lenses' > ${item.lenses
+      .map((lense, index) => {
+        return `<option value="${index}">${lense}</option> ${lense}`;
+      })
+      .join("")} </select>
+      </select>
+      <button type="submit" name="submit" value="submit">Ajouter au panier</button>
+      </form>
     </p>
-    <label for="lenses">Choix d'optique</label>
-    <select id="lense">
-      <option value="bonjour"> bonjour </option>
-      ${item.lenses.map(
-        (lense) => `<option value="${lense}"> ${lense} </option>`
-      )}
-    </select>
-
-    
   `;
-
-  for (let lense of item.lenses) {
-    console.log(lense);
-
-    `${lense}`;
-  }
-  `
-  ${item.lenses}
-</p>
-`;
+  createDivWithId("product", item._id, html);
 };
 
 getProducts(showProducts);

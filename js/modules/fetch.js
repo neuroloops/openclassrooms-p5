@@ -1,7 +1,4 @@
-export default function getProducts(
-  dataOperation,
-  url = "http://127.0.0.1:3000/api/cameras"
-) {
+function getProducts(dataOperation, url = "http://127.0.0.1:3000/api/cameras") {
   const fetchProducts = async function () {
     try {
       let response = await fetch(url);
