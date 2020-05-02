@@ -10,7 +10,7 @@
     <script src="./js/modules/fetch.js"></script>
     <script src="./js/modules/centToEuro.js"></script>
     <script src="./js/modules/tabs.js"></script>
-    <script src="./js/app.js"></script>
+    
 
     <title>Orinoco</title>
   </head>
@@ -18,76 +18,40 @@
 
     <div id="main" class="wrapper tab">
         <nav class="tabs menu">
-          <ul >
-          <li class="active"><a href="#home">Accueil Orinoco</a></li>
-          <li>
-            <a href="#user">Utilisateur</a>
-          </li>
-          <li>
-            <a href="#cart">Panier</a>
-          </li>
-          <li>
-            <a href="#confirm">Confirmation</a>
-          </li>
-          <li>
-            <a href="#product"></a>
-          </li>
-        </ul>
+          <ul>
+            <li class="active">
+              <a href="#home">
+                <img src="/img/logo.png" class="logo" alt="logo Orinoco">
+              </a>
+            </li>
+            <li>
+              <a class="btn" href="#user" id="btn-user">Utilisateur</a>
+            </li>
+            <li>
+              <a class="btn" href="#confirm">Confirmation</a>
+            </li>
+            <li>
+              <a href="#product"></a>
+            </li>
+            <li>
+              <a  href="#cart"><img src="/img/cart.svg" alt=""></a>
+            </li>
+          </ul>
         </nav>
-
         <div class="tabs-contents">
           <div class="tab-content active" id="home">
-            <div id="products"></div>
           </div>
           <div class="tab-content" id="product">
-
           </div>
           <div class="tab-content row" id="user">
-            <form class="col s12">
-              <div class="input-field col s12">
-                <input id="first_name" type="text" class="validate" />
-                <label for="first_name">Prénom</label>
-              </div>
-              <div class="input-field col s12">
-                <input id="last_name" type="text" class="validate" />
-                <label for="last_name">Nom</label>
-              </div>
-              <div class="input-field col s12">
-                <input id="email_inline" type="email" class="validate" />
-                <label for="email_inline">Email</label>
-                <span class="helper-text" data-error="email incorrect"></span>
-              </div>
-              <div class="input-field col s12">
-                <input id="address" type="text" class="validate" />
-                <label for="address">Adresse</label>
-              </div>
-              <div class="input-field col s3">
-                <input
-                  id="zipCode"
-                  type="text"
-                  maxlength="5"
-                  class="validate"
-                />
-                <label for="zipCode">Code postal</label>
-              </div>
-              <div class="input-field col s9">
-                <input id="city" type="text" class="validate" />
-                <label for="city">Ville</label>
-              </div>
-              <a class="waves-effect waves-light btn-large" href="#">valider</a>
-            </form>
           </div>
           <div class="tab-content" id="cart">
-            <div>
-            <h3>Panier</h3>
-          </div>
           </div>
           <div class="tab-content" id="confirm">
-            <h3>Total de la commande</h3>
           </div>
         </div>
       </div>
     </div>
-
+    <script src="./js/app.js"></script>
   </body>
 </html>
