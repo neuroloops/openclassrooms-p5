@@ -47,7 +47,6 @@
     let hash = window.location.hash;
 
     let a = document.querySelector('a[href="' + hash + '"]');
-    console.log(a);
 
     if (a !== null && !a.parentNode.classList.contains("active")) {
       afficherOnglet(a, e !== undefined);

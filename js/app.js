@@ -25,7 +25,7 @@ const createDivWithId = (targetIdDiv, id, html, append = 0) => {
   if (append == 0 || document.getElementById(id) == undefined) {
     target.appendChild(createDiv);
   } else {
-    console.log(document.getElementById(id));
+    // console.log(document.getElementById(id));
   }
 };
 
@@ -48,9 +48,9 @@ const showProducts = (data) => {
       </a>
       <hr />
     `;
-    divIdItem = "id_" + item._id
+    divIdItem = "id_" + item._id;
     createDivWithId("home", divIdItem, html);
-    console.log(item._id);
+    // console.log(item._id);
     const itemId = document.getElementById(divIdItem);
     itemId.addEventListener("click", (e) => {
       getProducts(showProduct, "http://127.0.0.1:3000/api/cameras/" + item._id);
@@ -105,11 +105,6 @@ const showProduct = (item) => {
     cartItem.push(item.name, item.price);
     result.textContent = `vous avez choisis ${event.target.value}`;
   });
-
-  // const btnId = document.getElementById("btn");
-  // btnId.addEventListener("click", (e) => {
-  //   displayCart(lense, item.name, cartItem);
-  // });
 };
 
 getProducts(showProducts);
@@ -127,21 +122,21 @@ const displayCart = (lense, name, cartItem) => {
   `;
   createDivWithId("cart", "cart", html);
 };
-
+let firstRun = true;
 const formulaire = () => {
   html = `
-    <form>
+    <form id="form">
       <input id="first_name" type="text" class="validate" />
       <label for="first_name">Prénom</label>
-      <div id="name"></div>
       <br />
       <input id="last_name" type="text" class="validate" />
+
       <label for="last_name">Nom</label><br />
       <input id="email_inline" type="email" class="validate" />
       <label for="email_inline">Email</label><br />
       <span class="helper-text" data-error="email incorrect"></span>
-      <input id="address" type="text" class="validate" /><br />
-      <label for="address">Adresse</label>
+      <input id="address" type="text" class="validate" />
+      <label for="address">Adresse</label><br />
       <input id="zipCode" type="text" maxlength="5" class="validate" />
       <label for="zipCode">Code postal</label> <br />
       <input id="city" type="text" class="validate" />
@@ -151,17 +146,36 @@ const formulaire = () => {
     <div id="name"></div>
   `;
   createDivWithId("user", "formulaireUser", html, 1);
-  const input = document.getElementById("first_name");
-  const log = document.getElementById("name");
 
-  input.addEventListener("input", updateValue);
+  if (firstRun == true) {
+    (function () {
+      const inputTag = document.querySelectorAll("input");
+      const arrayIds = [...inputTag].map((item) => item.id);
+      const customer = {
+        first_name: "",
+        last_name: "",
+        email_inline: "",
+        address: "",
+        zipCode: "",
+        city: "",
+      };
+      firstRun = false;
+      console.log(arrayIds);
 
-  function updateValue(e) {
-    target.appendChild(createDiv);
-    log.textContent = e.target.value;
+      arrayIds.forEach(function (id) {
+        const input = document.getElementById(id);
+        input.addEventListener("input", updateValue);
+        function updateValue(e) {
+          function test() {
+            customer[e.target.id] = e.target.value;
+            console.log(customer);
+          }
+          setInterval(test(e), 3000);
+        }
+      });
+    })();
   }
 };
-
 document.getElementById("btn-user").addEventListener("click", () => {
   formulaire();
 });
