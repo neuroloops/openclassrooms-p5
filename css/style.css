@@ -13,7 +13,7 @@ body {
 h2 {
   font-size: 2rem;
   white-space: nowrap;
-  color: white;
+  color: #454f40;
 }
 nav * {
   list-style: none;
@@ -53,7 +53,8 @@ nav * {
   border-radius: 25rem;
 }
 .tab-content {
-  background-color: var(--primary);
+  /* background-color: var(--primary); */
+background-color: white;
 }
 
 .introProduit {

@@ -5,6 +5,7 @@ TODO: serparer le error dans un module
 TODO: faire la page panier
 TODO: faire la page de confirmation
 FIXME: changer l'url en fonction de l'id de l'article
+FIXME: bug produit, dans createELWithId, regarder la condition pour l'activer si un enfant existe
 */
 
 const customer = {
@@ -25,7 +26,7 @@ const customer = {
  * @param {string} el nome de la balise de l'el à creer
  */
 
-const createElWithId = (targetIdDiv, id, html, append = 0, el = 'div') => {
+const createElWithId = (targetIdDiv, id, html, append = 0, el = "div") => {
   const target = document.getElementById(targetIdDiv);
   const createEl = document.createElement(el);
   createEl.setAttribute("class", targetIdDiv);
@@ -45,18 +46,22 @@ const createElWithId = (targetIdDiv, id, html, append = 0, el = 'div') => {
 const showProducts = (data) => {
   data.forEach(function (item) {
     html = `
-            <img src="${item.imageUrl}" alt="image de ${item.name}"/>
-            <figcaption>
-              ${item.name} </br>
-              <span class="price">${centToEuro(item.price.toString())}</span>
-            </figcaption>
+      <a href="#product">
+        <img src="${item.imageUrl}" alt="image de ${item.name}" />
+        <figcaption>
+          <h2>${item.name}</h2>
+          <span class="price">${centToEuro(item.price.toString())}</span>
+        </figcaption>
+      </a>
     `;
     divIdItem = "id_" + item._id;
-    createElWithId("polaroid", divIdItem, html, 1, "figure" );
-    // const itemId = document.getElementById(divIdItem);
-    // itemId.addEventListener("click", () => {
-    //   getProducts(showProduct, "http://127.0.0.1:3000/api/cameras/" + item._id);
-    // });
+    createElWithId("polaroid", divIdItem, html, 1, "figure");
+    console.log(divIdItem);
+    const itemId = document.getElementById(divIdItem);
+
+    itemId.addEventListener("click", () => {
+      getProducts(showProduct, "http://127.0.0.1:3000/api/cameras/" + item._id);
+    });
   });
 };
 
