@@ -29,7 +29,7 @@ figcaption {
   transform: rotate(-1deg);
   -webkit-backface-visibility: hidden; /*prevent rotated text being jagged in Chrome and Safari*/
 }
-#polaroid div:nth-child(even) figure {
+#polaroid figure:nth-child(even)  {
   -webkit-transform: rotate(2deg);
   -moz-transform: rotate(2deg);
   -o-transform: rotate(2deg);

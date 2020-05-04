@@ -71,11 +71,6 @@ nav * {
   padding: 25px;
 }
 
-hr {
-  color: white;
-  margin-top: 15px;
-}
-
 input[type="text"]:focus {
   background-color: lightblue;
 }
