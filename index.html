@@ -3,53 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./css/normalize.min.css" />
 
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/tabs.css" />
+    <link rel="stylesheet" href="./css/polaroid.css" />
     <script src="./js/modules/fetch.js"></script>
     <script src="./js/modules/centToEuro.js"></script>
     <script src="./js/modules/tabs.js"></script>
-    
 
     <title>Orinoco</title>
   </head>
   <body>
-
     <div id="main" class="wrapper tab">
-        <nav class="tabs menu">
-          <ul>
-            <li class="active">
-              <a href="#home">
-                <img src="/img/logo.png" class="logo" alt="logo Orinoco">
-              </a>
-            </li>
-            <li>
-              <a class="btn" href="#user" id="btn-user">Utilisateur</a>
-            </li>
-            <li>
-              <a class="btn" href="#confirm">Confirmation</a>
-            </li>
-            <li>
-              <a href="#product"></a>
-            </li>
-            <li>
-              <a  href="#cart"><img src="/img/cart.svg" alt=""></a>
-            </li>
-          </ul>
-        </nav>
-        <div class="tabs-contents">
-          <div class="tab-content active" id="home">
-          </div>
-          <div class="tab-content" id="product">
-          </div>
-          <div class="tab-content row" id="user">
-          </div>
-          <div class="tab-content" id="cart">
-          </div>
-          <div class="tab-content" id="confirm">
-          </div>
+      <nav class="tabs menu">
+        <ul>
+          <li class="active">
+            <a href="#home">
+              <img src="/img/logo.png" class="logo" alt="logo Orinoco" />
+            </a>
+          </li>
+          <li>
+            <a class="btn" href="#user" id="btn-user">Utilisateur</a>
+          </li>
+          <li>
+            <a class="btn" href="#confirm" id="confirmation">Confirmation</a>
+          </li>
+          <li>
+            <a href="#product"></a>
+          </li>
+          <li>
+            <a href="#cart"><img src="/img/cart.svg" alt="" /></a>
+          </li>
+        </ul>
+      </nav>
+      <div class="tabs-contents">
+        <div class="tab-content active" id="home">
+          <div id="polaroid"></div>
         </div>
+        <div class="tab-content" id="product"></div>
+        <div class="tab-content" id="user"></div>
+        <div class="tab-content" id="cart"></div>
+        <div class="tab-content" id="confirm"></div>
       </div>
     </div>
     <script src="./js/app.js"></script>

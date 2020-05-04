@@ -5,7 +5,7 @@ body {
 }
 .wrapper {
   margin: auto;
-  min-width: 550px;
+  /* min-width: 550px; */
   max-width: 800px;
   /* color : #155FFA */
 }
@@ -34,12 +34,7 @@ nav * {
   background-color: var(--primary-dark);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-#products {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-gap: 10px;
-  padding: 15px;
-}
+
 #products a {
   color: white;
 }
@@ -76,12 +71,6 @@ nav * {
   padding: 25px;
 }
 
-img {
-  max-width: 100%;
-  border: 1px solid var(--primary-dark);
-  border-radius: 15px;
-}
-
 hr {
   color: white;
   margin-top: 15px;
@@ -96,4 +85,7 @@ input[type="text"]:focus {
 .picture {
   width: 60%;
   min-width: 40%;
+}
+.price {
+  font-weight: bold;
 }

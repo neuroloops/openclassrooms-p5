@@ -12,7 +12,7 @@
     if (li.classList.contains("active")) {
       return false;
     }
-    // on retire la classe active de l'onglet atif
+    // on retire la classe active de l'onglet actif
     div.querySelector(".tabs .active").classList.remove("active");
     // ajout de la class active à l'onglet actuel
     li.classList.add("active");
