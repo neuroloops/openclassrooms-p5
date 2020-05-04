@@ -6,11 +6,13 @@ figcaption {
   width: 100%;
   overflow: hidden;
   padding: 20px 10px;
+  margin: auto
 }
 #polaroid figure {
   float: left;
   position: relative;
   width: 200px;
+  margin: auto;
   margin: 10px 20px;
   padding: 6px 8px 10px 8px;
   -webkit-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.75);

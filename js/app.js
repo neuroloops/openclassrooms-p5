@@ -17,6 +17,23 @@ const customer = {
   city: "",
 };
 
+const productsList = {
+  ids: [],
+  names: [],
+  prices: [],
+  lenses: [],
+};
+
+const cart = {
+  contact: {
+    firstName: "",
+    lastName: "",
+    address: "",
+    city: "",
+    email: "",
+  },
+  products: [],
+};
 /**
  *
  * @param {string} targetIdDiv Div parent
@@ -56,7 +73,7 @@ const showProducts = (data) => {
     `;
     divIdItem = "id_" + item._id;
     createElWithId("polaroid", divIdItem, html, 1, "figure");
-    console.log(divIdItem);
+
     const itemId = document.getElementById(divIdItem);
 
     itemId.addEventListener("click", () => {
@@ -100,24 +117,32 @@ const showProduct = (item) => {
       </div>
     </div>
   `;
-  let cartItem = [];
-  createElWithId("product", item._id, html, 1);
 
+  createElWithId("product", item._id, html, 1);
+  let lense = 0;
   addEventListener("change", (event) => {
     const result = document.querySelector(".result");
     lense = event.target.value;
-    cartItem.push(item.name, item.price);
+    productsList.lenses.push(lense);
     result.textContent = `vous avez choisis ${event.target.value}`;
+  });
+
+  document.getElementById("btn").addEventListener("click", () => {
+    productsList.names.push(item.name);
+    productsList.ids.push(item._id);
+    productsList.prices.push(item.price);
+    lense == 0 ? productsList.lenses.push(lense) : "";
+    displayCart();
   });
 };
 
-const displayCart = (lense, name, cartItem) => {
+const displayCart = () => {
   html = `
   <div>
-    <p>vous avez choisis ${name} avec ${lense}</p>
-    <p>resumé ${cartItem}</p>
+    <p>vous avez choisis ${productsList.names} avec ${productsList.lenses}</p>
+    
   </div>
-  ${cartItem
+  ${productsList.lenses
     .map((lense, index) => {
       return `<option value="${index}">${lense}</option> ${lense}`;
     })
@@ -125,6 +150,7 @@ const displayCart = (lense, name, cartItem) => {
   `;
   createElWithId("cart", "cart", html);
 };
+
 let firstRun = true;
 const formulaire = () => {
   html = `
