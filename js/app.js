@@ -72,7 +72,7 @@ const showProducts = (data) => {
 
 const showProduct = (item) => {
   html = `
-    <div class="description">
+    <div class="description>
       <div class="introProduit ">
         <h2>${item.name}</h2>
 
