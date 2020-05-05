@@ -5,9 +5,8 @@ TODO: serparer le error dans un module
 TODO: faire la page panier
 TODO: faire la page de confirmation
 FIXME: changer l'url en fonction de l'id de l'article
-FIXME: bug produit, dans createELWithId, regarder la condition pour l'activer si un enfant existe
 */
-
+let lense = 0;
 const customer = {
   first_name: "",
   last_name: "",
@@ -34,23 +33,30 @@ const cart = {
   },
   products: [],
 };
-/**
- *
- * @param {string} targetIdDiv Div parent
- * @param {string} id Id de la div crée
- * @param {string} html l'element html
- * @param {string} append
- * @param {string} el nome de la balise de l'el à creer
- */
 
-const createElWithId = (targetIdDiv, id, html, append = 0, el = "div") => {
+const createElWithId = (targetIdDiv, id, html, el = "div", append = 0) => {
+  /**
+   *
+   * @param {string} targetIdDiv Div parent
+   * @param {string} id Id de la div crée
+   * @param {string} html l'element html
+   * @param {string} el nome de la balise de l'el à creer
+   * @param {string} append
+   */
+
   const target = document.getElementById(targetIdDiv);
   const createEl = document.createElement(el);
   createEl.setAttribute("class", targetIdDiv);
   createEl.setAttribute("id", `${id}`);
   createEl.innerHTML = html;
   // append uniquement si append == 0 ou si l'element n'existe pas
-  if (append == 0 || document.getElementById(id) == undefined) {
+  if (append == 0) {
+    target.appendChild(createEl);
+  } else if (target.childNodes[0] != null) {
+    target.removeChild(target.childNodes[0]);
+    target.appendChild(createEl);
+  }
+  {
     target.appendChild(createEl);
   }
 };
@@ -72,7 +78,7 @@ const showProducts = (data) => {
       </a>
     `;
     divIdItem = "id_" + item._id;
-    createElWithId("polaroid", divIdItem, html, 1, "figure");
+    createElWithId("polaroid", divIdItem, html, "figure");
 
     const itemId = document.getElementById(divIdItem);
 
@@ -82,12 +88,11 @@ const showProducts = (data) => {
   });
 };
 
-/**
- *
- * @param {json} item reponse de fetch avec les infos du produits.
- */
-
 const showProduct = (item) => {
+  /**
+   *
+   * @param {json} item reponse de fetch avec les infos du produits.
+   */
   html = `
     <div class="description>
       <div class="introProduit ">
@@ -118,20 +123,18 @@ const showProduct = (item) => {
     </div>
   `;
 
-  createElWithId("product", item._id, html, 1);
-  let lense = 0;
+  createElWithId("product", item._id, html, "div", 1);
+
+  // ecoute le changement dans le menu déroulant
   addEventListener("change", (event) => {
-    const result = document.querySelector(".result");
     lense = event.target.value;
-    productsList.lenses.push(lense);
-    result.textContent = `vous avez choisis ${event.target.value}`;
   });
 
   document.getElementById("btn").addEventListener("click", () => {
     productsList.names.push(item.name);
     productsList.ids.push(item._id);
     productsList.prices.push(item.price);
-    lense == 0 ? productsList.lenses.push(lense) : "";
+    productsList.lenses.push(lense);
     displayCart();
   });
 };
@@ -140,15 +143,10 @@ const displayCart = () => {
   html = `
   <div>
     <p>vous avez choisis ${productsList.names} avec ${productsList.lenses}</p>
-    
+    ${JSON.stringify(productsList)}
   </div>
-  ${productsList.lenses
-    .map((lense, index) => {
-      return `<option value="${index}">${lense}</option> ${lense}`;
-    })
-    .join("")}
   `;
-  createElWithId("cart", "cart", html);
+  createElWithId("cart", "cart", html, "div", 1);
 };
 
 let firstRun = true;
