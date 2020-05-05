@@ -34,32 +34,51 @@ const cart = {
   products: [],
 };
 
-const createElWithId = (targetIdDiv, id, html, el = "div", append = 0) => {
+class createElWithId {
   /**
-   *
    * @param {string} targetIdDiv Div parent
    * @param {string} id Id de la div crée
    * @param {string} html l'element html
-   * @param {string} el nome de la balise de l'el à creer
-   * @param {string} append
+   * @param {Object} options
+   * @param {Object} options.el nome de la balise de l'el à creer
+   * @param {Object} options.append true or false (default = false)
    */
+  constructor(targetIdDiv, id, html, options = {}) {
+    this.targetIdDiv = targetIdDiv;
+    this.id = id;
+    this.html = html;
+    this.options = Object.assign(
+      {},
+      {
+        el: "div",
+        append: false,
+      },
+      options
+    );
+    this.target = document.getElementById(targetIdDiv);
+    this.createEl = document.createElement(this.options.el);
+    this.createEl.setAttribute("class", targetIdDiv);
+    this.createEl.setAttribute("id", id);
+    this.createEl.innerHTML = html;
+    this.create();
+  }
+  create() {
+    console.log(this.options.append);
 
-  const target = document.getElementById(targetIdDiv);
-  const createEl = document.createElement(el);
-  createEl.setAttribute("class", targetIdDiv);
-  createEl.setAttribute("id", `${id}`);
-  createEl.innerHTML = html;
-  // append uniquement si append == 0 ou si l'element n'existe pas
-  if (append == 0) {
-    target.appendChild(createEl);
-  } else if (target.childNodes[0] != null) {
-    target.removeChild(target.childNodes[0]);
-    target.appendChild(createEl);
+    // append uniquement si append == 0 ou si l'element n'existe pas
+    if (this.options.append == true) {
+      this.target.appendChild(this.createEl);
+    } else if (
+      this.target.childNodes[0] != null &&
+      this.options.append == false
+    ) {
+      this.target.removeChild(this.target.childNodes[0]);
+      this.target.appendChild(this.createEl);
+    } else {
+      this.target.appendChild(this.createEl);
+    }
   }
-  {
-    target.appendChild(createEl);
-  }
-};
+}
 
 /**
  *
@@ -77,12 +96,12 @@ const showProducts = (data) => {
         </figcaption>
       </a>
     `;
-    divIdItem = "id_" + item._id;
-    createElWithId("polaroid", divIdItem, html, "figure");
-
-    const itemId = document.getElementById(divIdItem);
-
-    itemId.addEventListener("click", () => {
+    let divIdItem = "id_" + item._id;
+    new createElWithId("polaroid", divIdItem, html, {
+      el: "figure",
+      append: true,
+    });
+    document.getElementById(divIdItem).addEventListener("click", () => {
       getProducts(showProduct, "http://127.0.0.1:3000/api/cameras/" + item._id);
     });
   });
@@ -123,8 +142,8 @@ const showProduct = (item) => {
     </div>
   `;
 
-  createElWithId("product", item._id, html, "div", 1);
-
+  // new createElWithId("product", item._id, html, "div", 1);
+  new createElWithId("product", item._id, html);
   // ecoute le changement dans le menu déroulant
   addEventListener("change", (event) => {
     lense = event.target.value;
