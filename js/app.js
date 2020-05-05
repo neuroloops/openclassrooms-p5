@@ -7,6 +7,8 @@ TODO: faire la page de confirmation
 FIXME: changer l'url en fonction de l'id de l'article
 */
 let lense = 0;
+let firstRun = true;
+
 const customer = {
   first_name: "",
   last_name: "",
@@ -63,15 +65,8 @@ class createElWithId {
     this.create();
   }
   create() {
-    console.log(this.options.append);
-
-    // append uniquement si append == 0 ou si l'element n'existe pas
-    if (this.options.append == true) {
-      this.target.appendChild(this.createEl);
-    } else if (
-      this.target.childNodes[0] != null &&
-      this.options.append == false
-    ) {
+    // append uniquement si  true ou si l'element n'existe pas
+    if (this.target.childNodes[0] != null && this.options.append == false) {
       this.target.removeChild(this.target.childNodes[0]);
       this.target.appendChild(this.createEl);
     } else {
@@ -142,7 +137,6 @@ const showProduct = (item) => {
     </div>
   `;
 
-  // new createElWithId("product", item._id, html, "div", 1);
   new createElWithId("product", item._id, html);
   // ecoute le changement dans le menu déroulant
   addEventListener("change", (event) => {
@@ -153,33 +147,38 @@ const showProduct = (item) => {
     productsList.names.push(item.name);
     productsList.ids.push(item._id);
     productsList.prices.push(item.price);
-    productsList.lenses.push(lense);
+    productsList.lenses.push(item.lenses[lense]);
     displayCart();
   });
 };
 
 const displayCart = () => {
-  html = `
-  <div>
-    <p>vous avez choisis ${productsList.names} avec ${productsList.lenses}</p>
-    ${JSON.stringify(productsList)}
-  </div>
+  let total = 0;
+  if (productsList.ids[0] == undefined) {
+    html = `<h3 class="total"> panier vide </h3>`;
+  } else {
+    html = `<table>
+    <tr>
+      <th scope="col">nom</th>
+      <th scope="col">option</th>
+      <th scope="col">prix</th>
+    </tr>
   `;
-  createElWithId("cart", "cart", html, "div", 1);
-};
 
-let firstRun = true;
-const formulaire = () => {
-  html = `
-    <div>
-      <p>vous avez choisis ${name} avec ${lense}</p>
-      <p>resumé ${cartItem}</p>
-    </div>
-    ${cartItem
-      .map((lense, index) => {
-        return `<option value="${index}">${lense}</option> ${lense}`;
-      })
-      .join("")}
+    productsList.ids.forEach((value, i) => {
+      html += `<tr><td>${productsList.names[i]}</td><td> ${
+        productsList.lenses[i]
+      } </td><td> ${centToEuro(productsList.prices[i].toString())}</td></tr>`;
+      total += productsList.prices[i];
+      i++;
+    });
+    html += `</table>
+    <p class="total">
+    Total ${centToEuro(total.toString())} TTC
+  </p>
+    `;
+  }
+  html += ` <div>
 
     <form id="form">
       <input id="first_name" type="text" class="validate" />
@@ -189,30 +188,28 @@ const formulaire = () => {
       <label for="last_name">Nom</label><br />
       <input id="email_inline" type="email" class="validate" />
       <label for="email_inline">Email</label><br />
-      <span class="helper-text" data-error="email incorrect"></span>
       <input id="address" type="text" class="validate" />
       <label for="address">Adresse</label><br />
       <input id="zipCode" type="text" maxlength="5" class="validate" />
       <label for="zipCode">Code postal</label> <br />
       <input id="city" type="text" class="validate" />
       <label for="city">Ville</label> <br />
-      <a class="" href="#confirm">valider</a>
+
       <a class="btn" href="#confirm" id="btn-confirmation">Confirmation</a>
     </form>
-    <div id="name"></div>
-  `;
-  createElWithId("user", "formulaireUser", html, 1);
+  </div>`;
+  new createElWithId("cart", "cart_content", html);
+
   document.getElementById("btn-confirmation").addEventListener("click", () => {
     confirmation();
   });
+
   if (firstRun == true) {
     (function () {
       const inputTag = document.querySelectorAll("input");
       const arrayIds = [...inputTag].map((item) => item.id);
 
       firstRun = false;
-      console.log(arrayIds);
-
       updateValue = (e) => {
         customer[e.target.id] = e.target.value;
       };
@@ -223,17 +220,57 @@ const formulaire = () => {
     })();
   }
 };
-const confirmation = () => {
-  html = `<h2> Page de confirmation </h2><p> salut
-${customer.first_name}
-</p>
-  `;
+// const cart = {
+//   contact: {
+//     firstName: "",
+//     lastName: "",
+//     address: "",
+//     city: "",
+//     email: "",
+//   },
+//   products: [],
+// };
 
-  createElWithId("confirm", "confirma", html, 1);
+const confirmation = () => {
+  cart.contact.firstName = customer.first_name;
+  cart.contact.lastName = customer.last_name;
+  cart.contact.address = customer.address;
+  cart.contact.city = customer.zipCode + customer.city;
+  cart.contact.email = customer.email_inline;
+
+  cart.products = productsList.ids;
+
+  const insertPost = async function (data) {
+    let response = await fetch("http://localhost:3000/api/cameras/order/", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify(data),
+    });
+    let responseData = await response.json();
+    console.log(responseData);
+  };
+
+  insertPost(cart);
+  html = `<h2>Page de confirmation</h2>
+    <p>
+      commande bien prise en compte <br />
+      recapitulatif <br />
+
+      e-mail :${customer.email_inline} <br />
+      Nom : ${customer.last_name} ${customer.first_name} <br />
+      addresse : ${customer.address} <br />
+      ${customer.zipCode}, ${customer.city} <br />
+      ${productsList.ids}
+      merci pour votre commande
+    </p>`;
+
+  new createElWithId("confirm", "confirm_content", html);
 };
 
-document.getElementById("btn-user").addEventListener("click", () => {
-  formulaire();
+document.getElementById("menu__cart").addEventListener("click", () => {
+  displayCart();
 });
 
 getProducts(showProducts);

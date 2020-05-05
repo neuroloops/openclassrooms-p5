@@ -61,6 +61,21 @@ input[type="text"]:focus {
   width: 100%;
   /* margin: auto; */
 }
+table {
+  width: 100%;
+  margin: auto;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid black;
+}
+#cart_content {
+  padding: 1rem;
+}
+.total {
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
 @media only screen and (min-width: 520px) {
   .wrapper {
     /* width: 530px; */

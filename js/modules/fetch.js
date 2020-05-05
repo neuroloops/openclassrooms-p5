@@ -5,7 +5,7 @@ function getProducts(dataOperation, url = "http://127.0.0.1:3000/api/cameras") {
       if (response.ok) {
         let data = await response.json();
         // pour afficher les data fetch dans la console
-        console.log("data", data);
+        // console.log("data", data);
         return dataOperation(data);
       } else {
         let err = response.status;
