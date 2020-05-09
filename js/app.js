@@ -2,17 +2,17 @@
 liste de todo
 TODO changer le message d'erreur 500
 TODO: serparer le error dans un module
-TODO: faire la page panier
-TODO: faire la page de confirmation
+TODO: email
+TODO: index db
+TODO: verification
+TODO: code postal script api?
 FIXME: changer l'url en fonction de l'id de l'article
 */
-let lense = 0;
-let firstRun = true;
 
 const customer = {
   first_name: "",
   last_name: "",
-  email_inline: "",
+  email: "",
   address: "",
   zipCode: "",
   city: "",
@@ -68,6 +68,7 @@ class createElWithId {
     // append uniquement si  true ou si l'element n'existe pas
     if (this.target.childNodes[0] != null && this.options.append == false) {
       this.target.removeChild(this.target.childNodes[0]);
+      //innerhtml
       this.target.appendChild(this.createEl);
     } else {
       this.target.appendChild(this.createEl);
@@ -97,7 +98,9 @@ const showProducts = (data) => {
       append: true,
     });
     document.getElementById(divIdItem).addEventListener("click", () => {
-      getProducts(showProduct, "http://127.0.0.1:3000/api/cameras/" + item._id);
+      console.log(urlServer + item._id);
+
+      getProducts(showProduct, urlServer + item._id);
     });
   });
 };
@@ -107,33 +110,36 @@ const showProduct = (item) => {
    *
    * @param {json} item reponse de fetch avec les infos du produits.
    */
+  let lense = 0;
   html = `
-    <div class="description>
-      <div class="introProduit ">
-        <h2>${item.name}</h2>
-
+    
+    <div class="introProduit ">
+      <figure class="polaroid">
+      
         <img src="${item.imageUrl}" alt="image de ${item.name}" />
-      </div>
-      <p>
-        ${centToEuro(item.price.toString())}<br />
-        ${item.description} <br />
-      </p>
-      option d'optique:
-      <select id="lenses">
-        ${item.lenses
-          .map((lense, index) => {
-            return `<option value="${index}">${lense}</option> ${lense}`;
-          })
-          .join("")}</select
-      >
-      <div class="result"></div>
-      <div>
-        <p>
-          <a href="#cart" class="btn">
-            <span id="btn">Ajouter au panier</span>
-          </a>
-        </p>
-      </div>
+        <figcaption>
+        <h2>${item.name}</h2>
+          option d'optique:
+          <select id="lenses">
+            ${item.lenses
+              .map((lense, index) => {
+                return `<option value="${index}">${lense}</option>${lense}`;
+              })
+              .join("")}</select
+          >
+        </figcaption>
+      </figure>
+      <p class="produit">
+      ${centToEuro(item.price.toString())}<br />
+      ${item.description} <br />
+    </p>
+    </div>
+    <div id="btn" class="btn">
+      
+        <a href="#cart" >
+          <span >Ajouter au panier</span>
+        </a>
+      
     </div>
   `;
 
@@ -151,6 +157,7 @@ const showProduct = (item) => {
     displayCart();
   });
 };
+let firstRun = true;
 
 const displayCart = () => {
   let total = 0;
@@ -170,7 +177,6 @@ const displayCart = () => {
         productsList.lenses[i]
       } </td><td> ${centToEuro(productsList.prices[i].toString())}</td></tr>`;
       total += productsList.prices[i];
-      i++;
     });
     html += `</table>
     <p class="total">
@@ -178,26 +184,130 @@ const displayCart = () => {
   </p>
     `;
   }
-  html += ` <div>
+  html += html`<div>
+      <form id="form">
+        <input id="first_name" type="text" class="validate" />
+        <label for="first_name">Prénom</label>
+        <br />
+        <input id="last_name" type="text" class="validate" />
+        <label for="last_name">Nom</label><br />
+        <input
+          id="email"
+          class="validate"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$"
+        /><span id="spanEmail" class="check"></span>
+        <label for="email">Email</label><span class="check"></span> <br />
+        <input id="address" type="text" class="validate" />
+        <label for="address">Adresse</label><br />
+        <input
+          id="zipCode"
+          type="text"
+          maxlength="5"
+          class="validate"
+          pattern="[0-9]{5,}$"
+        /><span class="check" id="spanZipCode"></span>
+        <label for="zipCode">Code postal</label> <br />
+        <input id="city" type="text" class="validate" />
+        <label for="city">Ville</label> <br />
 
-    <form id="form">
-      <input id="first_name" type="text" class="validate" />
-      <label for="first_name">Prénom</label>
-      <br />
-      <input id="last_name" type="text" class="validate" />
-      <label for="last_name">Nom</label><br />
-      <input id="email_inline" type="email" class="validate" />
-      <label for="email_inline">Email</label><br />
-      <input id="address" type="text" class="validate" />
-      <label for="address">Adresse</label><br />
-      <input id="zipCode" type="text" maxlength="5" class="validate" />
-      <label for="zipCode">Code postal</label> <br />
-      <input id="city" type="text" class="validate" />
-      <label for="city">Ville</label> <br />
+        <a class="btn" href="#confirm" id="btn-confirmation">Confirmation</a>
+        <button type="submit">Log in</button>
+      </form>
+    </div>
+    <div class="container-contact100">
+      <div class="wrap-contact100">
+        <form class="contact100-form validate-form">
+          <span class="contact100-form-title">
+            Say Hello!
+          </span>
 
-      <a class="btn" href="#confirm" id="btn-confirmation">Confirmation</a>
-    </form>
-  </div>`;
+          <div
+            class="wrap-input100 validate-input"
+            data-validate="Name is required"
+          >
+            <span class="label-input100">Your Name</span>
+            <input
+              class="input100"
+              type="text"
+              name="name"
+              placeholder="Enter your name"
+            />
+            <span class="focus-input100"></span>
+          </div>
+
+          <div
+            class="wrap-input100 validate-input"
+            data-validate="Valid email is required: ex@abc.xyz"
+          >
+            <span class="label-input100">Email</span>
+            <input
+              class="input100"
+              type="text"
+              name="email"
+              placeholder="Enter your email addess"
+            />
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="wrap-input100 input100-select">
+            <span class="label-input100">Needed Services</span>
+            <div>
+              <select class="selection-2" name="service">
+                <option>Choose Services</option>
+                <option>Online Store</option>
+                <option>eCommerce Bussiness</option>
+                <option>UI/UX Design</option>
+                <option>Online Services</option>
+              </select>
+            </div>
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="wrap-input100 input100-select">
+            <span class="label-input100">Budget</span>
+            <div>
+              <select class="selection-2" name="budget">
+                <option>Select Budget</option>
+                <option>1500 $</option>
+                <option>2000 $</option>
+                <option>2500 $</option>
+              </select>
+            </div>
+            <span class="focus-input100"></span>
+          </div>
+
+          <div
+            class="wrap-input100 validate-input"
+            data-validate="Message is required"
+          >
+            <span class="label-input100">Message</span>
+            <textarea
+              class="input100"
+              name="message"
+              placeholder="Your message here..."
+            ></textarea>
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="container-contact100-form-btn">
+            <div class="wrap-contact100-form-btn">
+              <div class="contact100-form-bgbtn"></div>
+              <button class="contact100-form-btn">
+                <span>
+                  Submit
+                  <i
+                    class="fa fa-long-arrow-right m-l-7"
+                    aria-hidden="true"
+                  ></i>
+                </span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="dropDownSelect1"></div> `;
   new createElWithId("cart", "cart_content", html);
 
   document.getElementById("btn-confirmation").addEventListener("click", () => {
@@ -212,36 +322,39 @@ const displayCart = () => {
       firstRun = false;
       updateValue = (e) => {
         customer[e.target.id] = e.target.value;
+        ZipCheck(customer.zipCode);
+        EmailCheck(customer.email);
       };
 
-      arrayIds.forEach((id) =>
-        document.getElementById(id).addEventListener("input", updateValue)
-      );
+      // arrayIds.forEach((id) =>
+      //   document.getElementById(id).addEventListener("input", updateValue)
+      // );
     })();
   }
+  const ZipCheck = (zipCode) => {
+    let zipCheck = /\d{5}/;
+    zipCheck.test(zipCode)
+      ? (document.getElementById("spanZipCode").innerHTML = "✔️")
+      : console.log("mauvais zip");
+  };
+  const EmailCheck = (email) => {
+    let emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    emailCheck.test(email)
+      ? (document.getElementById("spanEmail").innerHTML = "✔️")
+      : console.log("mauvais email");
+  };
 };
-// const cart = {
-//   contact: {
-//     firstName: "",
-//     lastName: "",
-//     address: "",
-//     city: "",
-//     email: "",
-//   },
-//   products: [],
-// };
 
 const confirmation = () => {
   cart.contact.firstName = customer.first_name;
   cart.contact.lastName = customer.last_name;
   cart.contact.address = customer.address;
   cart.contact.city = customer.zipCode + customer.city;
-  cart.contact.email = customer.email_inline;
-
+  cart.contact.email = customer.email;
   cart.products = productsList.ids;
 
   const insertPost = async function (data) {
-    let response = await fetch("http://localhost:3000/api/cameras/order/", {
+    let response = await fetch(urlServer + "order", {
       method: "POST",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -249,24 +362,23 @@ const confirmation = () => {
       body: JSON.stringify(data),
     });
     let responseData = await response.json();
-    console.log(responseData);
+    html = `
+      <h2>Page de confirmation</h2>
+      <p>
+        numero de commande : ${responseData.orderId} commande bien prise en
+        compte <br />
+        recapitulatif <br />
+        e-mail :${cart.contact.email} <br />
+        Nom : ${cart.contact.lastName} ${cart.contact.firstName} <br />
+        addresse : ${cart.contact.address} <br />
+        ${cart.contact.city} <br />
+        merci pour votre commande
+      </p>
+    `;
+    new createElWithId("confirm", "confirm_content", html);
   };
 
   insertPost(cart);
-  html = `<h2>Page de confirmation</h2>
-    <p>
-      commande bien prise en compte <br />
-      recapitulatif <br />
-
-      e-mail :${customer.email_inline} <br />
-      Nom : ${customer.last_name} ${customer.first_name} <br />
-      addresse : ${customer.address} <br />
-      ${customer.zipCode}, ${customer.city} <br />
-      ${productsList.ids}
-      merci pour votre commande
-    </p>`;
-
-  new createElWithId("confirm", "confirm_content", html);
 };
 
 document.getElementById("menu__cart").addEventListener("click", () => {
@@ -274,9 +386,3 @@ document.getElementById("menu__cart").addEventListener("click", () => {
 });
 
 getProducts(showProducts);
-
-// verification
-
-//email
-
-//code postal script api?

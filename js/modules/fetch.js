@@ -1,4 +1,6 @@
-function getProducts(dataOperation, url = "http://127.0.0.1:3000/api/cameras") {
+urlServer = "http://158.69.243.193:3000/api/cameras/";
+// urlServer = "http://127.0.0.1:3000/api/cameras/";
+function getProducts(dataOperation, url = urlServer) {
   const fetchProducts = async function () {
     try {
       let response = await fetch(url);
@@ -26,25 +28,16 @@ function getProducts(dataOperation, url = "http://127.0.0.1:3000/api/cameras") {
 
   const error = (err) => {
     let divHome = "";
-    if ((err = 500)) {
-      divHome = document.getElementById("product");
-    } else {
-      divHome = document.getElementById("home");
-    }
-
-    console.error("pas de donnée:", err);
-
     const imageUrl =
       "https://image.freepik.com/vecteurs-libre/glitch-error-404-page_23-2148105404.jpg";
-
+    divHome = document.getElementById("home");
     const createDiv = document.createElement("div");
-
     divHome.appendChild(createDiv);
-
+    console.error("pas de donnée:", err);
     createDiv.innerHTML = `
-  <h2>erreur avec le serveur de donnée</h2>
-  <p>${err}</p>
-  <img src="${imageUrl}" alt="erreur 503">
-`;
+      <h2>erreur avec le serveur de donnée</h2>
+      <p>${err}</p>
+      <img src="${imageUrl}" alt="erreur 503" />
+    `;
   };
 }
