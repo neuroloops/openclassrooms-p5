@@ -112,35 +112,35 @@ const showProduct = (item) => {
    */
   let lense = 0;
   html = `
-    
+
     <div class="introProduit ">
       <figure class="polaroid">
-      
         <img src="${item.imageUrl}" alt="image de ${item.name}" />
         <figcaption>
-        <h2>${item.name}</h2>
-          option d'optique:
-          <select id="lenses">
-            ${item.lenses
-              .map((lense, index) => {
-                return `<option value="${index}">${lense}</option>${lense}`;
-              })
-              .join("")}</select
-          >
+          <h2>${item.name}</h2>
         </figcaption>
       </figure>
       <p class="produit">
       ${centToEuro(item.price.toString())}<br />
       ${item.description} <br />
+      option d'optique:
+      <select id="lenses">
+        ${item.lenses
+          .map((lense, index) => {
+            return `<option value="${index}">${lense}</option>${lense}`;
+          })
+          .join("")}</select>
+      <div id="btn" class="btn">
+
+      <a href="#cart" >
+        <span >Ajouter au panier</span>
+      </a>
+    
+  </div>
+ 
     </p>
     </div>
-    <div id="btn" class="btn">
-      
-        <a href="#cart" >
-          <span >Ajouter au panier</span>
-        </a>
-      
-    </div>
+    
   `;
 
   new createElWithId("product", item._id, html);

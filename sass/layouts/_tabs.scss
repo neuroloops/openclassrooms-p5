@@ -1,0 +1,21 @@
+.tabs::after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+
+.tab-content {
+  display: none;
+  &.active {
+    display: block;
+  }
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity 0.01s;
+  &.in {
+    opacity: 1;
+    transition: opacity 1s;
+  }
+}

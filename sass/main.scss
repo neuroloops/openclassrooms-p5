@@ -1,34 +1,28 @@
-body {
-  --btn-color: #f3e8f0;
-  --btn-color-dark: #eee6d8;
-  --primary-dark: #d6ceb8;
-  /* background: rgba(22, 21, 21, 0.527); */
-  /* background-size: 16px 16px; */
+@import "./vendors/normalize.min.css";
+@import "./utils/variables";
+@import "./composants/btn";
+@import "./layouts/nav";
+@import "./layouts/polaroid";
+@import "./layouts/tabs";
+
+.background {
+  background: -webkit-linear-gradient(45deg, $body__bg1, $body__bg2),
+    url($body__bg__img) no-repeat;
+  background-blend-mode: multiply;
+  background-size: cover;
+  min-height: 100vh;
 }
 
 .wrapper {
   margin: auto;
-  background-color: white;
-  box-shadow: 0px 0px 20px 2px #888888;
-  border: solid grey 1px;
-}
+  margin-top: 10px;
+  // padding: 20px;
 
-nav * {
-  list-style: none;
-  text-decoration: none;
-  display: inline-block;
-  color: black;
-}
-.btn {
-  margin: 25px;
-  box-shadow: 0px 0px 20px 2px #888888;
-  background-color: #f3e8f0;
-  border-radius: 10%;
-  padding: 15px;
-  /* margin-top: 20px; */
-}
-.btn:hover {
-  background-color: var(--btn-color-dark);
+  box-shadow: 0px 0px 20px 2px $wrapper__bg;
+  width: 390px;
+  background: $wrapper__bg;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .logo {
@@ -48,9 +42,9 @@ nav * {
 .product {
   margin: auto;
   width: 90%;
-}
-.product img {
-  width: 100%;
+  & img {
+    width: 100%;
+  }
 }
 table {
   width: 100%;
@@ -73,24 +67,22 @@ table {
   font-size: 1.2rem;
 }
 @media (max-width: 690px) {
-  .wrap-contact100 {
+  .wrapper {
     padding: 72px 15px 65px 15px;
   }
 }
-@media only screen and (min-width: 600px) {
-  .wrap-contact100 {
+@media (min-width: 600px) {
+  .wrappper {
     width: 570px;
   }
 }
 @media only screen and (min-width: 685px) {
-  .wrap-contact100 {
+  .wrappper {
     width: 670px;
   }
-
-  /* width: 520px; */
 }
 @media only screen and (min-width: 950px) {
-  .wrap-contact100 {
+  .wrapper {
     width: 900px;
   }
 }
