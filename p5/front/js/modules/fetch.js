@@ -24,6 +24,8 @@ function getProducts(dataOperation, url = urlServer) {
       error(err);
     }
   };
+
+
   fetchProducts();
 
   const error = (err) => {

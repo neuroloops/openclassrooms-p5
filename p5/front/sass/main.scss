@@ -19,6 +19,7 @@
 
 .logo {
   width: 200px;
+  align-self: center;
 }
 #menu__cart {
   margin-right: 0;
@@ -31,26 +32,8 @@
   margin: auto;
   width: 100%;
 }
-
-table {
-  width: 100%;
-  margin: auto;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border: 1px solid black;
-}
-#cart_content,
-#confirm_content {
-  padding: 1rem;
-}
-.total {
-  text-align: right;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-.produit {
+.confirm {
   color: white;
-  font-size: 1.2rem;
 }
 
 @media (min-width: 600px) {

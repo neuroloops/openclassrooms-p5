@@ -9,11 +9,9 @@ TODO: code postal script api?
 FIXME: changer l'url en fonction de l'id de l'article
 */
 
-let check = () => console.log(parentNode);
-
 const customer = {
-  first_name: "",
-  last_name: "",
+  firstname: "",
+  lastname: "",
   email: "",
   address: "",
   zipCode: "",
@@ -102,7 +100,7 @@ const showProducts = (data) => {
       append: true,
     });
     document.getElementById(divIdItem).addEventListener("click", () => {
-      console.log(urlServer + item._id);
+      // console.log(urlServer + item._id);
 
       getProducts(showProduct, urlServer + item._id);
     });
@@ -125,21 +123,28 @@ const showProduct = (item) => {
       </figure>
     </div>
     <div class="produit__text">
-      <p class="produit">
-        ${centToEuro(item.price.toString())}<br />
-        ${item.description} </p>
-        <p>
+      <p>
+        ${item.description}
+      </p>
+      <p class="price">
+        ${centToEuro(item.price.toString())}
+      </p>
+      <p>
         option d'optique:
+
         <select id="lenses">
           ${item.lenses
             .map((lense, index) => {
               return `<option value="${index}">${lense}</option>${lense}`;
             })
-            .join("")}</select>
+            .join("")}</select
+        >
       </p>
-      <button class="btn">
-      <span>Ajouter au panier</span>
-    </button>
+
+        <button class="btn" id="btn_addToCart" onclick="location.href='#cart'" type="button">
+          <span>Ajouter au panier</span>
+        </button>
+
     </div>
   `;
 
@@ -148,210 +153,174 @@ const showProduct = (item) => {
   addEventListener("change", (event) => {
     lense = event.target.value;
   });
+  document.getElementById("menu__cart").addEventListener("click", () => {
+    displayCart();
+  });
 
-  document.getElementById("btn").addEventListener("click", () => {
+  addToCart = () => {
     productsList.names.push(item.name);
     productsList.ids.push(item._id);
     productsList.prices.push(item.price);
     productsList.lenses.push(item.lenses[lense]);
+  };
+
+  document.getElementById("btn_addToCart").addEventListener("click", () => {
+    event.preventDefault();
+    addToCart();
     displayCart();
   });
 };
 let firstRun = true;
 
+const ZipCheck = (zipCode) => {
+  let zipCheck = /\d{5}/;
+  zipCheck.test(zipCode)
+    ? (customer.zipCode = zipCode)
+    : console.log("mauvais zip", zipCode);
+};
+const EmailCheck = (email) => {
+  let emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  emailCheck.test(email)
+    ? (customer.email = email)
+    : console.log("mauvais email");
+};
+const addToCustomer = (field) => {
+  customer[field.name] = field.value;
+  console.log(customer);
+};
 const displayCart = () => {
   let total = 0;
+
   if (productsList.ids[0] == undefined) {
-    html = `<h3 class="total"> panier vide </h3>`;
+    html = `
+    <div class="form_order">
+      <h2 class="form_title">panier vide </h2>
+    </div>`;
   } else {
-    html = `<table>
-    <tr>
-      <th scope="col">nom</th>
-      <th scope="col">option</th>
-      <th scope="col">prix</th>
-    </tr>
-  `;
+    html = `
+    <div class="form_order">
+    <h2 class="form_title">Votre Commande</h2>
+    <table>
+      <tr>
+        <th scope="col">nom</th>
+        <th scope="col">option</th>
+        <th scope="col">prix</th>
+      </tr>
+    `;
 
     productsList.ids.forEach((value, i) => {
-      html += `<tr><td>${productsList.names[i]}</td><td> ${
+      html += `
+      <tr><td>${productsList.names[i]}</td><td> ${
         productsList.lenses[i]
       } </td><td> ${centToEuro(productsList.prices[i].toString())}</td></tr>`;
       total += productsList.prices[i];
     });
     html += `</table>
-    <p class="total">
-    Total ${centToEuro(total.toString())} TTC
-  </p>
-    `;
+              <p class="total">
+                Total ${centToEuro(total.toString())} TTC
+              </p>
+            </div>`;
   }
-  html += html`<div>
-      <form id="form">
-        <input id="first_name" type="text" class="validate" />
-        <label for="first_name">Prénom</label>
-        <br />
-        <input id="last_name" type="text" class="validate" />
-        <label for="last_name">Nom</label><br />
+  html += `<div class="form">
+    <form onsubmit=event.preventDefault();confirmation();>
+      <div class="wrap-inputs alert-validate">
+        <span class="wrap-inputs__label">Nom</span>
         <input
-          id="email"
-          class="validate"
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$"
-        /><span id="spanEmail" class="check"></span>
-        <label for="email">Email</label><span class="check"></span> <br />
-        <input id="address" type="text" class="validate" />
-        <label for="address">Adresse</label><br />
-        <input
-          id="zipCode"
+          class="wrap-inputs__input"
           type="text"
-          maxlength="5"
-          class="validate"
-          pattern="[0-9]{5,}$"
-        /><span class="check" id="spanZipCode"></span>
-        <label for="zipCode">Code postal</label> <br />
-        <input id="city" type="text" class="validate" />
-        <label for="city">Ville</label> <br />
-
-        <a class="btn" href="#confirm" id="btn-confirmation">Confirmation</a>
-        <button type="submit">Log in</button>
-      </form>
-    </div>
-    <div class="container-contact100">
-      <div class="wrap-contact100">
-        <form class="contact100-form validate-form">
-          <span class="contact100-form-title">
-            Say Hello!
-          </span>
-
-          <div
-            class="wrap-input100 validate-input"
-            data-validate="Name is required"
-          >
-            <span class="label-input100">Your Name</span>
-            <input
-              class="input100"
-              type="text"
-              name="name"
-              placeholder="Enter your name"
-            />
-            <span class="focus-input100"></span>
-          </div>
-
-          <div
-            class="wrap-input100 validate-input"
-            data-validate="Valid email is required: ex@abc.xyz"
-          >
-            <span class="label-input100">Email</span>
-            <input
-              class="input100"
-              type="text"
-              name="email"
-              placeholder="Enter your email addess"
-            />
-            <span class="focus-input100"></span>
-          </div>
-
-          <div class="wrap-input100 input100-select">
-            <span class="label-input100">Needed Services</span>
-            <div>
-              <select class="selection-2" name="service">
-                <option>Choose Services</option>
-                <option>Online Store</option>
-                <option>eCommerce Bussiness</option>
-                <option>UI/UX Design</option>
-                <option>Online Services</option>
-              </select>
-            </div>
-            <span class="focus-input100"></span>
-          </div>
-
-          <div class="wrap-input100 input100-select">
-            <span class="label-input100">Budget</span>
-            <div>
-              <select class="selection-2" name="budget">
-                <option>Select Budget</option>
-                <option>1500 $</option>
-                <option>2000 $</option>
-                <option>2500 $</option>
-              </select>
-            </div>
-            <span class="focus-input100"></span>
-          </div>
-
-          <div
-            class="wrap-input100 validate-input"
-            data-validate="Message is required"
-          >
-            <span class="label-input100">Message</span>
-            <textarea
-              class="input100"
-              name="message"
-              placeholder="Your message here..."
-            ></textarea>
-            <span class="focus-input100"></span>
-          </div>
-
-          <div class="container-contact100-form-btn">
-            <div class="wrap-contact100-form-btn">
-              <div class="contact100-form-bgbtn"></div>
-              <button class="contact100-form-btn">
-                <span>
-                  Submit
-                  <i
-                    class="fa fa-long-arrow-right m-l-7"
-                    aria-hidden="true"
-                  ></i>
-                </span>
-              </button>
-            </div>
-          </div>
-        </form>
+          name="firstname"
+          placeholder="Le Gallois"
+          onblur="addToCustomer(firstname)"
+          required
+        />
       </div>
-    </div>
+      <div
+        class="wrap-inputs alert-validate"
+        data-validate="Le prénom est obligatoire"
+      >
+        <span class="wrap-inputs__label">Prénom</span>
+        <input
+          class="wrap-inputs__input"
+          type="text"
+          name="lastname"
+          onblur="addToCustomer(lastname)"
+          required
+          placeholder="Perceval"
+        />
+      </div>
+      <div
+        class="wrap-inputs validate-input"
+        data-validate="un email valide est requis: ex@abc.xyz"
+      >
+        <span class="wrap-inputs__label">Email</span>
+        <input
+          class="wrap-inputs__input"
+          type="email"
+          name="email"
+          placeholder="exemple@abc.xyz"
+          onblur="EmailCheck(email.value)"
+          required
+        />
+        <span id="spanEmail"></span>
+      </div>
+      <div class="wrap-inputs validate-input">
+        <span class="wrap-inputs__label">adresse</span>
+        <textarea
+          class="wrap-inputs__input"
+          required
+          name="address"
+          onblur="addToCustomer(address)"
+          placeholder="20 rue de la taverne du village"
+        ></textarea>
+      </div>
+      <div class="wrap-inputs validate-input">
+        <span class="wrap-inputs__label">code postal</span>
+        <input
+          class="wrap-inputs__input"
+          type="text"
+          name="zip"
+          required
+          onblur="ZipCheck(zip.value)"
+          placeholder="00000"
+          pattern="[0-9]{5,}$"
+          maxlength="5"
+        />
+      </div>
+      <div class="wrap-inputs validate-input">
+        <span class="wrap-inputs__label">Ville</span>
+        <input
+          class="wrap-inputs__input"
+          type="text"
+          name="city"
+          required
+          onblur="addToCustomer(city)"
+          placeholder="Kaamelott"
+        />
+      </div>
 
-    <div id="dropDownSelect1"></div> `;
-  new CreateElWithId("cart", "cart_content", html);
+      <input
+        type="submit"
+        value="Commander"
+        id="btn-confirmation"
+        class="form__btn"
 
-  document.getElementById("btn-confirmation").addEventListener("click", () => {
-    confirmation();
-  });
-
-  if (firstRun == true) {
-    (function () {
-      const inputTag = document.querySelectorAll("input");
-      const arrayIds = [...inputTag].map((item) => item.id);
-
-      firstRun = false;
-      updateValue = (e) => {
-        customer[e.target.id] = e.target.value;
-        ZipCheck(customer.zipCode);
-        EmailCheck(customer.email);
-      };
-
-      // arrayIds.forEach((id) =>
-      //   document.getElementById(id).addEventListener("input", updateValue)
-      // );
-    })();
-  }
-  const ZipCheck = (zipCode) => {
-    let zipCheck = /\d{5}/;
-    zipCheck.test(zipCode)
-      ? (document.getElementById("spanZipCode").innerHTML = "✔️")
-      : console.log("mauvais zip");
-  };
-  const EmailCheck = (email) => {
-    let emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    emailCheck.test(email)
-      ? (document.getElementById("spanEmail").innerHTML = "✔️")
-      : console.log("mauvais email");
-  };
+      />
+    </form>
+  </div> `;
+  new CreateElWithId("cart", "form_wrapper", html);
 };
 
 const confirmation = () => {
-  cart.contact.firstName = customer.first_name;
-  cart.contact.lastName = customer.last_name;
+  document.getElementById("cart").classList.remove("active");
+  document.getElementById("confirm").classList.add("active");
+  cart.contact.firstName = customer.firstname;
+  cart.contact.lastName = customer.lastname;
   cart.contact.address = customer.address;
   cart.contact.city = customer.zipCode + customer.city;
   cart.contact.email = customer.email;
   cart.products = productsList.ids;
+  console.log("page confirmation");
+  console.log(cart);
 
   const insertPost = async function (data) {
     let response = await fetch(urlServer + "order", {
@@ -362,18 +331,19 @@ const confirmation = () => {
       body: JSON.stringify(data),
     });
     let responseData = await response.json();
-    html = `
-      <h2>Page de confirmation</h2>
+    html = `<div class="wrapper">
+      <h2 class="form_title">Page de confirmation</h2>
       <p>
-        numero de commande : ${responseData.orderId} commande bien prise en
-        compte <br />
+      commande bien prise en compte <br />
+        numero de commande : ${responseData.orderId}
         recapitulatif <br />
         e-mail :${cart.contact.email} <br />
         Nom : ${cart.contact.lastName} ${cart.contact.firstName} <br />
         addresse : ${cart.contact.address} <br />
         ${cart.contact.city} <br />
-        merci pour votre commande
+        <b>merci pour votre commande</b>
       </p>
+      </div>
     `;
     new CreateElWithId("confirm", "confirm_content", html);
   };
