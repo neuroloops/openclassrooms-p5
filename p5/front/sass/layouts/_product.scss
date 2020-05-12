@@ -1,0 +1,54 @@
+.product {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 1140px;
+  margin: auto;
+  background-color: $wrapper__bg;
+  padding-left: 15px;
+  padding-right: 30px;
+  // min-height: 100vh;
+  & img {
+    width: 100%;
+  }
+}
+
+// polaroid
+.produit__photo {
+  width: 100%;
+  padding: 20px 10px 20px 0px;
+  margin: auto;
+  & figure {
+    width: 100%;
+    margin: auto;
+    padding: 8px 8px 10px 8px;
+    box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.75);
+    background: #eee6d8;
+    width: 100%;
+  }
+  & figcaption {
+    text-align: center;
+    font-family: "Reenie Beanie", cursive;
+    font-size: 1.5em;
+    color: #454f40;
+    letter-spacing: 0.09em;
+  }
+}
+// fin polaroid
+
+.produit__text {
+  padding: 2.5rem;
+}
+@media only screen and (min-width: 750px) {
+  .product {
+    flex-direction: row;
+    justify-content: space-around;
+    // align-items: baseline;
+  }
+  .produit__photo {
+    padding-right: 40px;
+  }
+  .produit__text {
+    flex: 2 30%;
+  }
+}

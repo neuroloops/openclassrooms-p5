@@ -9,6 +9,8 @@ TODO: code postal script api?
 FIXME: changer l'url en fonction de l'id de l'article
 */
 
+let check = () => console.log(parentNode);
+
 const customer = {
   first_name: "",
   last_name: "",
@@ -36,7 +38,7 @@ const cart = {
   products: [],
 };
 
-class createElWithId {
+class CreateElWithId {
   /**
    * @param {string} targetIdDiv Div parent
    * @param {string} id Id de la div crée
@@ -82,6 +84,8 @@ class createElWithId {
  */
 
 const showProducts = (data) => {
+  html = "";
+  new CreateElWithId("home", "polaroid", html);
   data.forEach(function (item) {
     html = `
       <a href="#product">
@@ -93,7 +97,7 @@ const showProducts = (data) => {
       </a>
     `;
     let divIdItem = "id_" + item._id;
-    new createElWithId("polaroid", divIdItem, html, {
+    new CreateElWithId("polaroid", divIdItem, html, {
       el: "figure",
       append: true,
     });
@@ -112,38 +116,34 @@ const showProduct = (item) => {
    */
   let lense = 0;
   html = `
-
-    <div class="introProduit ">
+    <div class="produit__photo">
       <figure class="polaroid">
         <img src="${item.imageUrl}" alt="image de ${item.name}" />
         <figcaption>
           <h2>${item.name}</h2>
         </figcaption>
       </figure>
-      <p class="produit">
-      ${centToEuro(item.price.toString())}<br />
-      ${item.description} <br />
-      option d'optique:
-      <select id="lenses">
-        ${item.lenses
-          .map((lense, index) => {
-            return `<option value="${index}">${lense}</option>${lense}`;
-          })
-          .join("")}</select>
-      <div id="btn" class="btn">
-
-      <a href="#cart" >
-        <span >Ajouter au panier</span>
-      </a>
-    
-  </div>
- 
-    </p>
     </div>
-    
+    <div class="produit__text">
+      <p class="produit">
+        ${centToEuro(item.price.toString())}<br />
+        ${item.description} </p>
+        <p>
+        option d'optique:
+        <select id="lenses">
+          ${item.lenses
+            .map((lense, index) => {
+              return `<option value="${index}">${lense}</option>${lense}`;
+            })
+            .join("")}</select>
+      </p>
+      <button class="btn">
+      <span>Ajouter au panier</span>
+    </button>
+    </div>
   `;
 
-  new createElWithId("product", item._id, html);
+  new CreateElWithId("product", item._id, html);
   // ecoute le changement dans le menu déroulant
   addEventListener("change", (event) => {
     lense = event.target.value;
@@ -308,7 +308,7 @@ const displayCart = () => {
     </div>
 
     <div id="dropDownSelect1"></div> `;
-  new createElWithId("cart", "cart_content", html);
+  new CreateElWithId("cart", "cart_content", html);
 
   document.getElementById("btn-confirmation").addEventListener("click", () => {
     confirmation();
@@ -375,7 +375,7 @@ const confirmation = () => {
         merci pour votre commande
       </p>
     `;
-    new createElWithId("confirm", "confirm_content", html);
+    new CreateElWithId("confirm", "confirm_content", html);
   };
 
   insertPost(cart);

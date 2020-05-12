@@ -1,28 +1,18 @@
-@import "./vendors/normalize.min.css";
+// @import "./vendors/normalize.min.css";
 @import "./utils/variables";
 @import "./composants/btn";
 @import "./layouts/nav";
 @import "./layouts/polaroid";
 @import "./layouts/tabs";
-
+@import "./layouts/form";
+@import "./layouts/product";
+@import "./composants/_wrapper";
 .background {
   background: -webkit-linear-gradient(45deg, $body__bg1, $body__bg2),
     url($body__bg__img) no-repeat;
   background-blend-mode: multiply;
   background-size: cover;
   min-height: 100vh;
-}
-
-.wrapper {
-  margin: auto;
-  margin-top: 10px;
-  // padding: 20px;
-
-  box-shadow: 0px 0px 20px 2px $wrapper__bg;
-  width: 390px;
-  background: $wrapper__bg;
-  border-radius: 10px;
-  overflow: hidden;
 }
 
 .logo {
@@ -39,13 +29,7 @@
   margin: auto;
   width: 100%;
 }
-.product {
-  margin: auto;
-  width: 90%;
-  & img {
-    width: 100%;
-  }
-}
+
 table {
   width: 100%;
   margin: auto;
@@ -66,23 +50,19 @@ table {
   color: white;
   font-size: 1.2rem;
 }
-@media (max-width: 690px) {
-  .wrapper {
-    padding: 72px 15px 65px 15px;
-  }
-}
+
 @media (min-width: 600px) {
-  .wrappper {
-    width: 570px;
-  }
-}
-@media only screen and (min-width: 685px) {
-  .wrappper {
-    width: 670px;
-  }
-}
-@media only screen and (min-width: 950px) {
   .wrapper {
-    width: 900px;
+    width: 380px;
+  }
+}
+@media only screen and (min-width: 750px) {
+  .wrapper {
+    width: 750px;
+  }
+}
+@media only screen and (min-width: 1100px) {
+  .wrapper {
+    width: 1110px;
   }
 }

@@ -14,7 +14,7 @@
   </head>
   <body>
     <div class="background">
-      <div id="main" class="wrapper tab">
+      <div id="main" class="tab">
         <nav class="tabs menu">
           <ul>
             <li class="active">
@@ -35,103 +35,106 @@
             </li>
           </ul>
         </nav>
-        <div class="tabs-contents">
-          <div class="tab-content active" id="home">
-            <div id="polaroid"></div>
-          </div>
+        <div class="tabs-contents ">
+          <div class="tab-content wrapper active" id="home"></div>
           <div class="tab-content" id="product"></div>
           <div class="tab-content" id="cart">
-            <div class="wrap-contact100">
-              <form class="contact100-form validate-form">
-                <span class="contact100-form-title">
-                  Votre Commande
-                </span>
-                <div
-                  class="wrap-input100 validate-input"
-                  data-validate="Le nom est obligatoire"
-                >
-                  <span class="label-input100">Nom</span>
-                  <input
-                    class="input100"
-                    type="text"
-                    name="name"
-                    placeholder="Entrez votre nom"
-                  />
-                  <span class="focus-input100"></span>
+            <!-- <div class="form"> -->
+            <form class="form">
+              <span class="form_title">
+                Votre Commande
+              </span>
+              <div
+                class="wrap-inputs alert-validate"
+                data-validate="Le nom est obligatoire"
+              >
+                <span class="wrap-inputs__label">Nom</span>
+                <input
+                  class="wrap-inputs__input"
+                  type="text"
+                  name="name"
+                  placeholder="Le Gallois"
+                  onblur="check()"
+                  required
+                />
+              </div>
+              <div
+                class="wrap-inputs alert-validate"
+                data-validate="Le prénom est obligatoire"
+              >
+                <span class="wrap-inputs__label">Prénom</span>
+                <input
+                  class="wrap-inputs__input"
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Perceval"
+                />
+                <!-- <span class="focus-input100"></span> -->
+              </div>
+              <div
+                class="wrap-inputs validate-input"
+                data-validate="un email valide est requis: ex@abc.xyz"
+              >
+                <span class="wrap-inputs__label">Email</span>
+                <input
+                  class="wrap-inputs__input"
+                  type="email"
+                  name="email"
+                  placeholder="exemple@abc.xyz"
+                  required
+                />
+                <span class="focus-input100"></span>
+              </div>
+              <div
+                class="wrap-inputs validate-input"
+                data-validate="Message is required"
+              >
+                <span class="wrap-inputs__label">adresse</span>
+                <textarea
+                  class="wrap-inputs__input"
+                  name="message"
+                  placeholder="20 rue de la taverne du village"
+                ></textarea>
+                <span class="focus-input100"></span>
+              </div>
+              <div
+                class="wrap-inputs validate-input"
+                data-validate="Le nom est obligatoire"
+              >
+                <span class="wrap-inputs__label">code postal</span>
+                <input
+                  class="wrap-inputs__input"
+                  type="text"
+                  name="zip"
+                  placeholder="00000"
+                  pattern="[0-9]{5,}$"
+                  maxlength="5"
+                />
+              </div>color: red;
+              <div
+                class="wrap-inputs validate-input"
+                data-validate="Le nom est obligatoire"
+              >
+                <span class="wrap-inputs__label">Ville</span>
+                <input
+                  class="wrap-inputs__input"
+                  type="text"
+                  name="ville"
+                  placeholder="Kaamelott"
+                />
+                <span class="focus-input100"></span>
+              </div>
+              <div class="container-contact100-form-btn">
+                <div class="wrap-contact100-form-btn">
+                  <div class="contact100-form-bgbtn"></div>
+                  <button class="form__btn-disabled">
+                    <span>Submit</span>
+                  </button>
                 </div>
-                <div
-                  class="wrap-input100 validate-input"
-                  data-validate="Le prénom est obligatoire"
-                >
-                  <span class="label-input100">Prénom</span>
-                  <input
-                    class="input100"
-                    type="text"
-                    name="name"
-                    placeholder="Indiquez votre prénom"
-                  />
-                  <span class="focus-input100"></span>
-                </div>
-                <div
-                  class="wrap-input100 validate-input"
-                  data-validate="un email valide est requis: ex@abc.xyz"
-                >
-                  <span class="label-input100">Email</span>
-                  <input
-                    class="input100"
-                    type="text"
-                    name="email"
-                    placeholder="Indiquez votre email"
-                  />
-                  <span class="focus-input100"></span>
-                </div>
-                <div
-                  class="wrap-input100 validate-input"
-                  data-validate="Message is required"
-                >
-                  <span class="label-input100">adresse</span>
-                  <textarea
-                    class="input100"
-                    name="message"
-                    placeholder="Votre adresse..."
-                  ></textarea>
-                  <span class="focus-input100"></span>
-                </div>
-                <div
-                  class="wrap-input100 validate-input"
-                  data-validate="Le nom est obligatoire"
-                >
-                  <span class="label-input100">Nom</span>
-                  <input
-                    class="input100"
-                    type="text"
-                    name="zip"
-                    placeholder="Indiquez votre code p"
-                  />
-                </div>
-                <div
-                  class="wrap-input100 validate-input"
-                  data-validate="Le nom est obligatoire"
-                >
-                  <span class="label-input100">Nom</span>
-                  <input
-                    class="input100"
-                    type="text"
-                    name="ville"
-                    placeholder="Indiquez votre Ville"
-                  />
-                  <span class="focus-input100"></span>
-                </div>
-                <div class="container-contact100-form-btn">
-                  <div class="wrap-contact100-form-btn">
-                    <div class="contact100-form-bgbtn"></div>
-                    <button class="contact100-form-btn">
-                      <span>Submit</span>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
+              </div>
+            </form>
+            <!-- </div> -->
             <div id="dropDownSelect1"></div>
           </div>
         </div>
