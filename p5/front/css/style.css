@@ -2,7 +2,7 @@
   margin: 25px;
   box-shadow: 0px 0px 20px 2px #888888;
   background-color: #f3e8f0;
-  border-radius: 10%;
+  border-radius: 10px 10px;
   padding: 15px;
 }
 .btn:hover {
@@ -293,6 +293,30 @@ form:valid {
   background: rgba(107, 106, 106, 0.383);
   border-radius: 10px;
   overflow: hidden;
+}
+
+.tabs::after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity 0.01s;
+}
+
+.fade.in {
+  opacity: 1;
+  transition: opacity 1s;
 }
 
 .background {

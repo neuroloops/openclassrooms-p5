@@ -7,6 +7,8 @@
 @import "./layouts/form";
 @import "./layouts/product";
 @import "./composants/_wrapper";
+@import "./utils/_tabs";
+
 .background {
   background: -webkit-linear-gradient(45deg, $body__bg1, $body__bg2),
     url($body__bg__img) no-repeat;
