@@ -1,6 +1,15 @@
-nav * {
-  list-style: none;
-  text-decoration: none;
-  display: inline-block;
-  color: black;
+nav {
+  width: 70%;
+  margin: auto;
+  & * {
+    list-style: none;
+    text-decoration: none;
+    color: black;
+  }
+  & ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // width: 100%;
+  }
 }
