@@ -1,236 +1,89 @@
-/*
-liste de todo
-TODO changer le message d'erreur 500
-TODO: serparer le error dans un module
-TODO: email
-TODO: index db
-TODO: verification
-TODO: code postal script api?
-FIXME: changer l'url en fonction de l'id de l'article
-*/
+// liste de todo
+// TODO changer le message d'erreur 500
+// TODO: serparer le error dans un module
+// TODO: email
+// TODO: index db
+// TODO: verification
+// TODO: code postal script api?
+// FIXME: changer l'url en fonction de l'id de l'article
 
 const customer = {
-  firstname: "",
-  lastname: "",
-  email: "",
-  address: "",
-  zipCode: "",
-  city: "",
+  firstName: '',
+  lastName: '',
+  email: '',
+  address: '',
+  zipCode: '',
+  city: ''
 };
 
 const productsList = {
   ids: [],
   names: [],
   prices: [],
-  lenses: [],
+  lenses: []
 };
 
 const cart = {
   contact: {
-    firstName: "",
-    lastName: "",
-    address: "",
-    city: "",
-    email: "",
+    firstName: '',
+    lastName: '',
+    address: '',
+    city: '',
+    email: ''
   },
-  products: [],
+  products: []
 };
+const urlServer = 'https://orinoco-p5.herokuapp.com/api/cameras/';
 
-class CreateElWithId {
-  /**
-   * @param {string} targetIdDiv Div parent
-   * @param {string} id Id de la div crée
-   * @param {string} html l'element html
-   * @param {Object} options
-   * @param {Object} options.el nome de la balise de l'el à creer
-   * @param {Object} options.append true or false (default = false)
-   */
-  constructor(targetIdDiv, id, html, options = {}) {
-    this.targetIdDiv = targetIdDiv;
-    this.id = id;
-    this.html = html;
-    this.options = Object.assign(
-      {},
-      {
-        el: "div",
-        append: false,
-      },
-      options
-    );
-    this.target = document.getElementById(targetIdDiv);
-    this.createEl = document.createElement(this.options.el);
-    this.createEl.setAttribute("class", targetIdDiv);
-    this.createEl.setAttribute("id", id);
-    this.createEl.innerHTML = html;
-    this.create();
-  }
-  create() {
-    // append uniquement si  true ou si l'element n'existe pas
-    if (this.target.childNodes[0] != null && this.options.append == false) {
-      this.target.removeChild(this.target.childNodes[0]);
-      //innerhtml
-      this.target.appendChild(this.createEl);
-    } else {
-      this.target.appendChild(this.createEl);
-    }
-  }
+function centToEuro(price) {
+  const cent = price.slice(-2);
+  const euro = price.slice(0, -2);
+  return `${euro},${cent}€`;
 }
-
-/**
- *
- * @param {json} data retour du fecth
- */
-
-const showProducts = (data) => {
-  html = "";
-  new CreateElWithId("home", "polaroid", html);
-  data.forEach(function (item) {
-    html = `
-      <a href="#product">
-        <img src="${item.imageUrl}" alt="image de ${item.name}" />
-        <figcaption>
-          <h2>${item.name}</h2>
-          <span class="price">${centToEuro(item.price.toString())}</span>
-        </figcaption>
-      </a>
-    `;
-    let divIdItem = "id_" + item._id;
-    new CreateElWithId("polaroid", divIdItem, html, {
-      el: "figure",
-      append: true,
-    });
-    document.getElementById(divIdItem).addEventListener("click", () => {
-      // console.log(urlServer + item._id);
-
-      getProducts(showProduct, urlServer + item._id);
-    });
-  });
-};
-
-const showProduct = (item) => {
-  /**
-   *
-   * @param {json} item reponse de fetch avec les infos du produits.
-   */
-  let lense = 0;
-  html = `
-    <div class="produit__photo">
-      <figure class="polaroid">
-        <img src="${item.imageUrl}" alt="image de ${item.name}" />
-        <figcaption>
-          <h2>${item.name}</h2>
-        </figcaption>
-      </figure>
-    </div>
-    <div class="produit__text">
-      <p>
-        ${item.description}
-      </p>
-      <p class="price">
-        ${centToEuro(item.price.toString())}
-      </p>
-      <p>
-        option d'optique:
-
-        <select id="lenses">
-          ${item.lenses
-            .map((lense, index) => {
-              return `<option value="${index}">${lense}</option>${lense}`;
-            })
-            .join("")}</select
-        >
-      </p>
-
-        <button class="btn" id="btn_addToCart" onclick="location.href='#cart'" type="button">
-          <span>Ajouter au panier</span>
-        </button>
-
-    </div>
-  `;
-
-  new CreateElWithId("product", item._id, html);
-  // ecoute le changement dans le menu déroulant
-  addEventListener("change", (event) => {
-    lense = event.target.value;
-  });
-  document.getElementById("menu__cart").addEventListener("click", () => {
-    displayCart();
-  });
-
-  addToCart = () => {
-    productsList.names.push(item.name);
-    productsList.ids.push(item._id);
-    productsList.prices.push(item.price);
-    productsList.lenses.push(item.lenses[lense]);
-  };
-
-  document.getElementById("btn_addToCart").addEventListener("click", () => {
-    event.preventDefault();
-    addToCart();
-    displayCart();
-  });
-};
-let firstRun = true;
-
-const ZipCheck = (zipCode) => {
-  let zipCheck = /\d{5}/;
-  zipCheck.test(zipCode)
-    ? (customer.zipCode = zipCode)
-    : console.log("mauvais zip", zipCode);
-};
-const EmailCheck = (email) => {
-  let emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  emailCheck.test(email)
-    ? (customer.email = email)
-    : console.log("mauvais email");
-};
-const addToCustomer = (field) => {
-  customer[field.name] = field.value;
-  console.log(customer);
-};
 const displayCart = () => {
   let total = 0;
 
-  if (productsList.ids[0] == undefined) {
-    html = `
-    <div class="form_order">
-      <h2 class="form_title">panier vide </h2>
+  if (productsList.ids[0] === undefined) {
+    const html = /* html */ ` <div class="form_order">
+      <h2 class="form_title">panier vide</h2>
     </div>`;
   } else {
-    html = `
-    <div class="form_order">
-    <h2 class="form_title">Votre Commande</h2>
-    <table>
-      <tr>
-        <th scope="col">nom</th>
-        <th scope="col">option</th>
-        <th scope="col">prix</th>
-      </tr>
-    `;
+    const html = /* html */ `<div class="form">
+      <div class="form_order">
+        <h2 class="form_title">Votre Commande</h2>
+        <table>
+          <tr>
+            <th scope="col">nom</th>
+            <th scope="col">option</th>
+            <th scope="col">prix</th>
+          </tr>
+        </table>
+      </div>
+    </div> `;
 
     productsList.ids.forEach((value, i) => {
       html += `
-      <tr><td>${productsList.names[i]}</td><td> ${
-        productsList.lenses[i]
-      } </td><td> ${centToEuro(productsList.prices[i].toString())}</td></tr>`;
+      <tr><td>${productsList.names[i]}</td><td> ${productsList.lenses[i]} </td><td> ${centToEuro(
+        productsList.prices[i].toString()
+      )}</td></tr>`;
       total += productsList.prices[i];
     });
-    html += `</table>
+    html += /* html */ `</table>
               <p class="total">
                 Total ${centToEuro(total.toString())} TTC
               </p>
             </div>`;
   }
-  html += `<div class="form">
-    <form onsubmit=event.preventDefault();confirmation();>
+  html += /* html */ `<div class="form">
+    <form onsubmit="event.preventDefault();confirmation();">
       <div class="wrap-inputs alert-validate">
         <span class="wrap-inputs__label">Nom</span>
         <input
           class="wrap-inputs__input"
           type="text"
-          name="firstname"
+          name="firstName"
           placeholder="Le Gallois"
-          onblur="addToCustomer(firstname)"
+          onblur="addToCustomer(firstName)"
           required
         />
       </div>
@@ -242,8 +95,8 @@ const displayCart = () => {
         <input
           class="wrap-inputs__input"
           type="text"
-          name="lastname"
-          onblur="addToCustomer(lastname)"
+          name="lastName"
+          onblur="addToCustomer(lastName)"
           required
           placeholder="Perceval"
         />
@@ -286,7 +139,10 @@ const displayCart = () => {
           maxlength="5"
         />
       </div>
-      <div class="wrap-inputs validate-input">
+      <div
+        class="wrap-inp
+      uts validate-input"
+      >
         <span class="wrap-inputs__label">Ville</span>
         <input
           class="wrap-inputs__input"
@@ -297,61 +153,256 @@ const displayCart = () => {
           placeholder="Kaamelott"
         />
       </div>
-
       <input
         type="submit"
         value="Commander"
         id="btn-confirmation"
         class="form__btn"
-
       />
     </form>
-  </div> `;
-  new CreateElWithId("cart", "form_wrapper", html);
+  </div>`;
+  new CreateElWithId('cart', 'form_wrapper', html);
 };
 
+const showProduct = item => {
+  /**
+   *
+   * @param {json} item réponse de fetch avec les infos du produits.
+   */
+  let lense = 0;
+  const html = /* html */ `
+    <div class="produit__photo">
+      <figure class="polaroid">
+        <img src="${item.imageUrl}" alt="image de ${item.name}" />
+        <figcaption>
+          <h2>${item.name}</h2>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="produit__text">
+      <p>
+        ${item.description}
+      </p>
+      <p class="price">
+        ${centToEuro(item.price.toString())}
+      </p>
+      <p>
+        option d'optique:
+        <select id="lenses">
+          ${item.lenses
+            .map((lense, index) => {
+              return `<option value="${index}">${lense}</option>${lense}`;
+            })
+            .join('')}</select
+        >
+      </p>
+
+      <button
+        class="btn"
+        id="btn_addToCart"
+        onclick="location.href='#cart'"
+        type="button"
+      >
+        <span>Ajouter au panier</span>
+      </button>
+    </div>
+  `;
+
+  new CreateElWithId('product', item._id, html);
+  // écoute le changement dans le menu déroulant
+  addEventListener('change', event => {
+    lense = event.target.value;
+  });
+  document.getElementById('menu__cart').addEventListener('click', () => {
+    displayCart();
+  });
+
+  const addToCart = () => {
+    productsList.names.push(item.name);
+    productsList.ids.push(item._id);
+    productsList.prices.push(item.price);
+    productsList.lenses.push(item.lenses[lense]);
+  };
+
+  document.getElementById('btn_addToCart').addEventListener('click', () => {
+    event.preventDefault();
+    addToCart();
+    displayCart();
+  });
+};
+
+function getProducts(dataOperation, url = urlServer) {
+  async function fetchProducts() {
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.json();
+        // pour afficher les data fetch dans la console
+        // console.log("data", data);
+        return dataOperation(data);
+      } else {
+        let err = response.status;
+        if (err === 404) {
+          console.log('error 404');
+          error(err);
+        } else {
+          console.error('retour du serveur: ', err);
+          error(err);
+        }
+      }
+    } catch (err) {
+      // console.log('error', err);
+      error(err);
+    }
+  }
+
+  fetchProducts();
+
+  const error = err => {
+    let divHome = '';
+    const imageUrl =
+      'https://image.freepik.com/vecteurs-libre/glitch-error-404-page_23-2148105404.jpg';
+    divHome = document.getElementById('home');
+    const createDiv = document.createElement('div');
+    divHome.appendChild(createDiv);
+    // console.error('pas de donnée:', err);
+    createDiv.innerHTML = `
+      <h2>erreur avec le serveur de donnée</h2>
+      <p>${err}</p>
+      <img src="${imageUrl}" alt="erreur 503" />
+    `;
+  };
+}
+
+class CreateElWithId {
+  /**
+   * @param {string} targetIdDiv  Div parent
+   * @param {string} id - Id de la div crée
+   * @param {string} html - l'element html
+   * @param {Object} options
+   * @param {Object} options.el nom de la balise de l'el à créer
+   * @param {Object} options.append true or false (default = false)
+   */
+  constructor(targetIdDiv, id, html, options = {}) {
+    this.targetIdDiv = targetIdDiv;
+    this.id = id;
+    this.html = html;
+    this.options = Object.assign(
+      {},
+      {
+        el: 'div',
+        append: false
+      },
+      options
+    );
+    this.target = document.getElementById(targetIdDiv);
+    this.createEl = document.createElement(this.options.el);
+    this.createEl.setAttribute('class', targetIdDiv);
+    this.createEl.setAttribute('id', id);
+    this.createEl.innerHTML = html;
+    this.create();
+  }
+
+  create() {
+    // append uniquement si  true ou si l'element n'existe pas
+    if (this.target.childNodes[0] != null && this.options.append === false) {
+      this.target.removeChild(this.target.childNodes[0]);
+      this.target.appendChild(this.createEl);
+    } else {
+      this.target.appendChild(this.createEl);
+    }
+  }
+}
+
+/**
+ *
+ * @param {json} data retour du fecth
+ */
+
+const showProducts = data => {
+  let html = '';
+  new CreateElWithId('home', 'polaroid', html);
+  data.forEach(function(item) {
+    html = /* html */ `
+      <a href="#product">
+        <img src="${item.imageUrl}" alt="image de ${item.name}" />
+        <figcaption>
+          <h2>${item.name}</h2>
+          <span class="price">${centToEuro(item.price.toString())}</span>
+        </figcaption>
+      </a>
+    `;
+    let divIdItem = 'id_' + item._id;
+    new CreateElWithId('polaroid', divIdItem, html, {
+      el: 'figure',
+      append: true
+    });
+    document.getElementById(divIdItem).addEventListener('click', () => {
+      // console.log(urlServer + item._id);
+
+      getProducts(showProduct, urlServer + item._id);
+    });
+  });
+};
+
+const ZipCheck = zipCode => {
+  const zipCheck = /\d{5}/;
+  zipCheck.test(zipCode) ? (customer.zipCode = zipCode) : console.log('mauvais zip', zipCode);
+};
+const EmailCheck = email => {
+  const emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  emailCheck.test(email) ? (customer.email = email) : console.log('mauvais email');
+};
+const addToCustomer = field => {
+  customer[field.name] = field.value;
+  console.log(customer);
+};
+
+
 const confirmation = () => {
-  document.getElementById("cart").classList.remove("active");
-  document.getElementById("confirm").classList.add("active");
-  cart.contact.firstName = customer.firstname;
-  cart.contact.lastName = customer.lastname;
+  document.getElementById('cart').classList.remove('active');
+  document.getElementById('confirm').classList.add('active');
+  cart.contact.firstName = customer.firstName;
+  cart.contact.lastName = customer.lastName;
   cart.contact.address = customer.address;
   cart.contact.city = customer.zipCode + customer.city;
   cart.contact.email = customer.email;
   cart.products = productsList.ids;
-  console.log("page confirmation");
-  console.log(cart);
 
-  const insertPost = async function (data) {
-    let response = await fetch(urlServer + "order", {
-      method: "POST",
+  /* eslint-disable */
+  console.log('page confirmation');
+  console.log(cart);
+  /* eslint-enable */
+
+  const insertPost = async function(data) {
+    const response = await fetch(urlServer + 'order', {
+      method: 'POST',
       headers: {
-        "Content-type": "application/json; charset=UTF-8",
+        'Content-type': 'application/json; charset=UTF-8'
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
-    let responseData = await response.json();
-    html = `<div class="wrapper">
+    const html = /* html */ `<div class="wrapper">
       <h2 class="form_title">Page de confirmation</h2>
       <p>
       commande bien prise en compte <br />
-        numero de commande : ${responseData.orderId}
-        recapitulatif <br />
+        numéro de commande : ${responseData.orderId}
+        récapitulatif <br />
         e-mail :${cart.contact.email} <br />
         Nom : ${cart.contact.lastName} ${cart.contact.firstName} <br />
-        addresse : ${cart.contact.address} <br />
+        adresse : ${cart.contact.address} <br />
         ${cart.contact.city} <br />
         <b>merci pour votre commande</b>
       </p>
       </div>
     `;
-    new CreateElWithId("confirm", "confirm_content", html);
+    new CreateElWithId('confirm', 'confirm_content', html);
   };
 
   insertPost(cart);
 };
 
-document.getElementById("menu__cart").addEventListener("click", () => {
+document.getElementById('menu__cart').addEventListener('click', () => {
   displayCart();
 });
 
