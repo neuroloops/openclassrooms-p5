@@ -1,14 +1,3 @@
-/*
-liste de todo
-TODO changer le message d'erreur 500
-TODO: serparer le error dans un module
-TODO: email
-TODO: index db
-TODO: verification
-TODO: code postal script api?
-FIXME: changer l'url en fonction de l'id de l'article
-*/
-
 const customer = {
   firstname: "",
   lastname: "",
@@ -130,7 +119,7 @@ const showProduct = (item) => {
         ${centToEuro(item.price.toString())}
       </p>
       <p>
-        option d'optique:
+        Option d'optique:
 
         <select id="lenses">
           ${item.lenses
@@ -194,7 +183,7 @@ const displayCart = () => {
   if (productsList.ids[0] == undefined) {
     html = `
     <div class="form_order">
-      <h2 class="form_title">panier vide </h2>
+      <h2 class="form_title">Panier vide </h2>
     </div>`;
   } else {
     html = `
@@ -202,9 +191,9 @@ const displayCart = () => {
     <h2 class="form_title">Votre Commande</h2>
     <table>
       <tr>
-        <th scope="col">nom</th>
-        <th scope="col">option</th>
-        <th scope="col">prix</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Option</th>
+        <th scope="col">Prix</th>
       </tr>
     `;
 
@@ -264,7 +253,7 @@ const displayCart = () => {
         <span id="spanEmail"></span>
       </div>
       <div class="wrap-inputs validate-input">
-        <span class="wrap-inputs__label">adresse</span>
+        <span class="wrap-inputs__label">Adresse</span>
         <textarea
           class="wrap-inputs__input"
           required
@@ -274,7 +263,7 @@ const displayCart = () => {
         ></textarea>
       </div>
       <div class="wrap-inputs validate-input">
-        <span class="wrap-inputs__label">code postal</span>
+        <span class="wrap-inputs__label">Code postal</span>
         <input
           class="wrap-inputs__input"
           type="text"
