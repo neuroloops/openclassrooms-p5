@@ -1,7 +1,7 @@
-urlServer = "https://orinoco-p5.herokuapp.com/api/cameras/";
+urlServer = "http://158.69.243.193:3000/api/cameras/";
 // urlServer = "http://127.0.0.1:3000/api/cameras/";
 function getProducts(dataOperation, url = urlServer) {
-  const fetchProducts = async function() {
+  const fetchProducts = async function () {
     try {
       let response = await fetch(url);
       if (response.ok) {
@@ -24,6 +24,7 @@ function getProducts(dataOperation, url = urlServer) {
       error(err);
     }
   };
+
 
   fetchProducts();
 
