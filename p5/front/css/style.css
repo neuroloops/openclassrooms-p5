@@ -43,19 +43,11 @@
   cursor: not-allowed;
 }
 
-nav {
-  width: 70%;
-  margin: auto;
-}
 nav * {
   list-style: none;
   text-decoration: none;
+  display: inline-block;
   color: black;
-}
-nav ul {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 figure,
@@ -190,7 +182,10 @@ figcaption {
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  margin: 0px 0px 27px;
+  margin-bottom: 27px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
   padding-bottom: 13px;
   padding-left: 0px;
 }
@@ -238,7 +233,8 @@ input:required:invalid {
   font-weight: 400;
   line-height: 46.8px;
   margin: 0;
-  padding: 0 0 44px;
+  padding: 0;
+  padding-bottom: 44px;
   text-align: center;
 }
 
