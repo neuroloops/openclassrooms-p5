@@ -9,9 +9,13 @@
 @import './composants/_wrapper';
 @import './utils/_tabs';
 
-.background {
+body {
   background: $body__bg;
   min-height: 100vh;
+}
+
+nav ul {
+  display: flex;
 }
 
 .logo {
