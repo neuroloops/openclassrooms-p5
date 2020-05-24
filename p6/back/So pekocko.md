@@ -1,6 +1,6 @@
-[TOC]
-
 # So pekocko
+
+[TOC]
 
 ## TODO
 
@@ -58,7 +58,7 @@ POST /api/sauces/:id/like
 | POST /api/auth/login      |          `{ email: string, password: string }`           |                          |
 | GET /api/sauces           |                           `-`                            |    Tableau de sauces     |
 | GET /api/sauces/:id       |                           `-`                            |      `Sauce unique`      |
-| POST /api/sauces          |            `{ sauce: Chaine, image:Fichier}`             |   `{message: Chaîne}`    |
+| POST /api/sauces          |            `{ sauce: Chaîne, image:Fichier}`             |   `{message: Chaîne}`    |
 | PUT /api/sauces/:id       | `Sauce comme JSON` ou `{ sauce: Chaîne, image: Fichier}` |   `{message: Chaîne}`    |
 | DELETE /api/sauces/:id    |                           `-`                            |  `{message : Chaîne }`   |
 | POST /api/sauces/:id/like |          `{ userId: Chaîne, j'aime : Nombre }`           |  `{ message: Chaîne }`   |
@@ -68,23 +68,18 @@ POST /api/sauces/:id/like
 - l’API doit respecter le RGPD et les standards OWASP ;
 - le mot de passe des utilisateurs doit être chiffré ;
 - 2 types de droits administrateur à la base de données doivent être définis : un accès pour supprimer ou modifier des tables, et un accès pour éditer le contenu de la base de données ;
-- la sécurité de la base de données MongoDB (à partir d’un service tel que MongoDB
-  Atlas) doit être faite de telle sorte que le validateur puisse lancer l’application depuis
-  sa machine ;
+- la sécurité de la base de données MongoDB (à partir d’un service tel que MongoDB Atlas) doit être faite de telle sorte que le validateur puisse lancer l’application depuis sa machine ;
 - l’authentification est renforcée sur les routes requises ;
 - les mots de passe sont stockés de manière sécurisée ;
-- les adresses mails de la base de données sont uniques et un plugin Mongoose
-  approprié est utilisé pour s’assurer de leur caractère unique et rapporter des erreurs.
+- les adresses mails de la base de données sont uniques et un plugin Mongoose approprié est utilisé pour s’assurer de leur caractère unique et rapporter des erreurs.
 
 ## Erreurs API
 
-Toute erreur doit être renvoyée telle quelle, sans aucune modification ni ajout. Si nécessaire,
-utiliser une nouvelle Erreur().
+Toute erreur doit être renvoyée telle quelle, sans aucune modification ni ajout. Si nécessaire, utiliser une nouvelle Erreur().
 
 ## Routes API
 
-Toutes les routes relatives à la sauce doivent exiger une demande authentifiée (contenant un
-jeton valide dans son en-tête d'autorisation : "Porteur <token>").
+Toutes les routes relatives à la sauce doivent exiger une demande authentifiée (contenant un jeton valide dans son en-tête d'autorisation : "Porteur <token>").
 
 ## Modèle de données
 
@@ -93,8 +88,7 @@ jeton valide dans son en-tête d'autorisation : "Porteur <token>").
 Le modèle de données pour une sauce est le suivant:
 
 - id: ObjectID — identifiant unique créé par MongoDB ;
-- userID: string — identifiant unique MongoDB pour l'utilisateur qui a créé la
-  sauce ;
+- userID: string — identifiant unique MongoDB pour l'utilisateur qui a créé la sauce ;
 - name: string — nom de la sauce ;
 - manufacturer: string — fabricant de la sauce ;
 - description: string — description de la sauce ;
@@ -119,5 +113,4 @@ Le modèle de données pour un utilisateur est le suivant :
 - framework : Express ;
 - serveur : NodeJS ;
 - base de données : MongoDB ;
-- toutes les opérations de la base de données doivent utiliser le pack Mongoose avec
-  des schémas de données stricts
+- toutes les opérations de la base de données doivent utiliser le pack Mongoose avec des schémas de données stricts
