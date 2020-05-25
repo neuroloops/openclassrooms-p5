@@ -2,10 +2,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-
-// const bodyParser = require('body-parser');
-// const stuffRoutes = require('./routes/stuff');
-// const userRoutes = require('./routes/user');
+const bodyParser = require('body-parser');
+const userRoutes = require('./routes/user');
+const stuffRoutes = require('./routes/sauce');
 
 const app = express();
 
