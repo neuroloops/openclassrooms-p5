@@ -1,12 +1,3 @@
-// liste de todo
-// TODO changer le message d'erreur 500
-// TODO: serparer le error dans un module
-// TODO: email
-// TODO: index db
-// TODO: verification
-// TODO: code postal script api?
-// FIXME: changer l'url en fonction de l'id de l'article
-
 const customer = {
   firstname: '',
   lastname: '',
@@ -22,7 +13,6 @@ const productsList = {
   prices: [],
   lenses: []
 };
-
 
 const cart = {
   contact: {
