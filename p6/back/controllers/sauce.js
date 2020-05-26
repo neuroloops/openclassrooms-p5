@@ -1,23 +1,25 @@
-const Thing = require('../models/sauce');
+const Sauce = require('../models/sauce');
 
-exports.createThing = (req, res, next) => {
-  const thingObject = JSON.parse(req.body.thing);
-  delete thingObject._id;
-  const thing = new Thing({
-    ...thingObject,
+exports.createSauce = (req, res, next) => {
+  const sauceObject = JSON.parse(req.body.sauce);
+  delete sauceObject._id;
+  const sauce = new Sauce({
+    ...sauceObject,
     imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
   });
-  thing
+
+  sauce
     .save()
     .then(() => res.status(201).json({ message: 'Objet enregistré !' }))
     .catch((error) => res.status(400).json({ error }));
 };
-exports.getOneThing = (req, res, next) => {
-  Thing.findOne({
+
+exports.getOneSauce = (req, res, next) => {
+  Sauce.findOne({
     _id: req.params.id
   })
-    .then((thing) => {
-      res.status(200).json(thing);
+    .then((sauce) => {
+      res.status(200).json(sauce);
     })
     .catch((error) => {
       res.status(404).json({
@@ -26,7 +28,7 @@ exports.getOneThing = (req, res, next) => {
     });
 };
 
-exports.modifyThing = (req, res, next) => {
+exports.modifySauce = (req, res, next) => {
   const thingObject = req.file
     ? {
         ...JSON.parse(req.body.thing),
@@ -35,7 +37,7 @@ exports.modifyThing = (req, res, next) => {
         }`
       }
     : { ...req.body };
-  Thing.updateOne(
+  Sauce.updateOne(
     { _id: req.params.id },
     { ...thingObject, _id: req.params.id }
   )
@@ -43,8 +45,8 @@ exports.modifyThing = (req, res, next) => {
     .catch((error) => res.status(400).json({ error }));
 };
 
-exports.deleteThing = (req, res, next) => {
-  Thing.deleteOne({ _id: req.params.id })
+exports.deleteSauce = (req, res, next) => {
+  Sauce.deleteOne({ _id: req.params.id })
     .then(() => {
       res.status(200).json({
         message: 'Deleted!'
@@ -58,7 +60,7 @@ exports.deleteThing = (req, res, next) => {
 };
 
 exports.getAllSauce = (req, res, next) => {
-  Thing.find()
+  Sauce.find()
     .then((things) => {
       res.status(200).json(things);
     })
