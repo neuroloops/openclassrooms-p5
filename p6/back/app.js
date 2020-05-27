@@ -3,18 +3,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
+const mongoLogin = require('./secret/mongoLogin');
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce');
 
 const app = express();
 
-// password : AehvHYvQTrXgGjm0
-// mongo "mongodb+srv://dbloops:<password>@cluster0-x4pis.mongodb.net/test?retryWrites=true&w=majority"
 mongoose
-  .connect(
-    'mongodb+srv://dbloops:AehvHYvQTrXgGjm0@cluster0-x4pis.mongodb.net/test?retryWrites=true&w=majority',
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
+  .connect(mongoLogin, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.warn('Connexion à MongoDB réussie !'))
   .catch(() => console.warn('Connexion à MongoDB échouée !'));
 
@@ -35,6 +31,6 @@ app.use(bodyParser.json());
 
 app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
-
 app.use('/images', express.static(path.join(__dirname, 'images')));
+
 module.exports = app;
