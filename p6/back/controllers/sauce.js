@@ -28,9 +28,7 @@ exports.getOneSauce = (req, res) => {
       res.status(200).json(sauce);
     })
     .catch((error) => {
-      res.status(404).json({
-        error: error
-      });
+      res.status(404).json({ error });
     });
 };
 
@@ -59,9 +57,7 @@ exports.deleteSauce = (req, res) => {
       });
     })
     .catch((error) => {
-      res.status(400).json({
-        error: error
-      });
+      res.status(400).json({ error });
     });
 };
 
@@ -73,9 +69,7 @@ exports.getAllSauce = (req, res) => {
       res.status(200).json(sauces);
     })
     .catch((error) => {
-      res.status(400).json({
-        error: error
-      });
+      res.status(400).json({ error });
     });
 };
 
@@ -86,7 +80,7 @@ exports.like = (req, res) => {
     { _id: req.params.id },
     {
       ...sauceObject,
-      usersliked: sauceObject.usersliked.push(userId(req)),
+
       likes: +1
     }
   )
