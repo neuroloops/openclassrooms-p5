@@ -4,3 +4,4 @@ node_modules/
 p6/back/secret/tokenKey.js
 p6/back/secret/mongoLogin.js
 p6/back/Sopekocko.md
+p6/front
