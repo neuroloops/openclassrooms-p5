@@ -8,7 +8,6 @@ const path = require('path');
 module.exports = {
   entry: {
     index: './src/index.js',
-    video: './src/video.js',
   },
   output: {
     filename: 'js/[name]-[contenthash].js',
@@ -70,14 +69,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/templates/index.html',
       filename: 'index.html',
-      title: 'Bienvenue sur mon site',
+      title: 'Bienvenue chez Orinoco',
       chunks: ['index'],
-    }),
-    new HtmlWebpackPlugin({
-      template: 'src/templates/video.html',
-      filename: 'video.html',
-      title: 'Ma video',
-      chunks: ['video'],
     }),
   ],
 }; // en module.export

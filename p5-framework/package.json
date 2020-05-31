@@ -41,5 +41,8 @@
   "scripts": {
     "prod": "node_modules/.bin/webpack --config webpack.prod.js",
     "dev": "node_modules/.bin/webpack-dev-server --config webpack.dev.js"
+  },
+  "dependencies": {
+    "tailwindcss": "^1.4.6"
   }
 }
