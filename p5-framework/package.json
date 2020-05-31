@@ -4,6 +4,12 @@
   "description": "refactoring p5",
   "main": "index.js",
   "license": "MIT",
+  "dependencies": {
+    "postcss": "^7.0.31",
+    "postcss-import": "^12.0.1",
+    "style-loader": "^1.2.1",
+    "tailwindcss": "^1.4.6"
+  },
   "devDependencies": {
     "@babel/core": "^7.10.1",
     "@babel/preset-env": "^7.10.1",
@@ -41,8 +47,5 @@
   "scripts": {
     "prod": "node_modules/.bin/webpack --config webpack.prod.js",
     "dev": "node_modules/.bin/webpack-dev-server --config webpack.dev.js"
-  },
-  "dependencies": {
-    "tailwindcss": "^1.4.6"
   }
 }

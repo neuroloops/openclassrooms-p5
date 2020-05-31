@@ -18,13 +18,13 @@ module.exports = merge(common, {
         test: /\.(css|scss)$/,
         use: [
           'style-loader',
-          'css-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
           {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
               // eslint-disable-next-line
-              plugins: [require('autoprefixer')()],
+              plugins: [require('postcss-import'), require('tailwindcss'), require('autoprefixer')],
             },
           },
           'sass-loader',
