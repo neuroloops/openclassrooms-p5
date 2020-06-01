@@ -3,3 +3,7 @@
 @tailwind components;
 
 @tailwind utilities;
+
+#menu-toggle:checked + #menu {
+  display: block;
+}
