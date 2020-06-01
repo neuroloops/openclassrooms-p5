@@ -16,19 +16,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.mp4$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name]-[contentHash].[ext]',
-              outputPath: 'medias',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(jpg|jpeg|gif|png)$/,
+        test: /\.(jpg|jp(e*)g|gif|png)$/,
         use: [
           {
             loader: 'url-loader',
@@ -41,7 +29,20 @@ module.exports = {
         ],
       }, // end images rule
       {
-        test: /\.(woff(2)?|ttf|eot|svg)$/,
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              limit: 10000,
+              name: '[name]-[contenthash].[ext]',
+              outputPath: 'images',
+            },
+          },
+        ],
+      }, // end svg rule
+      {
+        test: /\.(woff(2)?|ttf|eot)$/,
         use: [
           {
             loader: 'file-loader',
