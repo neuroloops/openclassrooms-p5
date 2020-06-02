@@ -1,21 +1,21 @@
 // @import "./vendors/normalize.min.css";
-@import "./utils/variables";
-@import "./composants/btn";
-@import "./layouts/nav";
-@import "./layouts/polaroid";
-@import "./layouts/tabs";
-@import "./layouts/form";
-@import "./layouts/product";
-@import "./composants/_wrapper";
-@import "./utils/_tabs";
+@import './utils/variables';
+@import './composants/btn';
+@import './layouts/nav';
+@import './layouts/polaroid';
+@import './layouts/tabs';
+@import './layouts/form';
+@import './layouts/product';
+@import './composants/_wrapper';
+@import './utils/_tabs';
 
-
-.background {
-  background: -webkit-linear-gradient(45deg, $body__bg1, $body__bg2),
-    url($body__bg__img) no-repeat;
-  background-blend-mode: multiply;
-  background-size: cover;
+body {
+  background: $body__bg;
   min-height: 100vh;
+}
+
+nav ul {
+  display: flex;
 }
 
 .logo {

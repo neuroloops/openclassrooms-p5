@@ -34,7 +34,6 @@ figcaption {
   box-sizing: initial;
 }
 
-
 #polaroid figure:nth-child(even) {
   -webkit-transform: rotate(2deg);
   -moz-transform: rotate(2deg);
@@ -46,7 +45,7 @@ figcaption {
   box-shadow: -4px 4px 8px -4px rgba(0, 0, 0, 0.75);
 }
 #polaroid figure:before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   left: 5px;
@@ -64,8 +63,8 @@ figcaption {
 
 #polaroid figcaption {
   text-align: center;
-  font-family: "Reenie Beanie", cursive;
-  font-size: 1.5em;
+  font-family: 'Special Elite', cursive;
+  font-size: 1.2em;
   color: #454f40;
   letter-spacing: 0.09em;
 }
@@ -85,4 +84,3 @@ figcaption {
 #polaroid a {
   text-decoration: none;
 }
-

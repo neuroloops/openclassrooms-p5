@@ -5,40 +5,40 @@
     }
     let li = a.parentNode;
     let div = a.parentNode.parentNode.parentNode.parentNode;
-    let activeTab = div.querySelector('.tab-content.active'); // contenu actif
-    let target = div.querySelector(a.getAttribute('href')); // contenu à afficher
+    let activeTab = div.querySelector(".tab-content.active"); // contenu actif
+    let target = div.querySelector(a.getAttribute("href")); // contenu à afficher
     // console.log(activeTab);
 
-    if (li.classList.contains('active')) {
+    if (li.classList.contains("active")) {
       return false;
     }
     // on retire la classe active de l'onglet actif
-    div.querySelector('.tabs .active').classList.remove('active');
+    div.querySelector(".tabs .active").classList.remove("active");
     // ajout de la class active à l'onglet actuel
-    li.classList.add('active');
+    li.classList.add("active");
 
     if (animations) {
-      activeTab.classList.add('fade');
-      activeTab.classList.remove('in');
+      activeTab.classList.add("fade");
+      activeTab.classList.remove("in");
       let transitionend = function () {
-        this.classList.remove('fade');
-        this.classList.remove('active');
-        target.classList.add('active');
-        target.classList.add('fade');
+        this.classList.remove("fade");
+        this.classList.remove("active");
+        target.classList.add("active");
+        target.classList.add("fade");
         target.offsetWidth;
-        target.classList.add('in');
-        activeTab.removeEventListener('transitionend', transitionend);
+        target.classList.add("in");
+        activeTab.removeEventListener("transitionend", transitionend);
       };
 
-      activeTab.addEventListener('transitionend', transitionend);
+      activeTab.addEventListener("transitionend", transitionend);
     } else {
-      target.classList.add('active');
-      activeTab.classList.remove('active');
+      target.classList.add("active");
+      activeTab.classList.remove("active");
     }
   };
-  let tabs = document.querySelectorAll('.tabs a');
+  tabs = document.querySelectorAll(".tabs a");
   for (let i = 0; i < tabs.length; i++) {
-    tabs[i].addEventListener('click', function () {
+    tabs[i].addEventListener("click", function (e) {
       afficherOnglet(this);
     });
   }
@@ -48,10 +48,10 @@
 
     let a = document.querySelector('a[href="' + hash + '"]');
 
-    if (a !== null && !a.parentNode.classList.contains('active')) {
+    if (a !== null && !a.parentNode.classList.contains("active")) {
       afficherOnglet(a, e !== undefined);
     }
   };
-  window.addEventListener('hashchange', hashChange);
+  window.addEventListener("hashchange", hashChange);
   hashChange();
 })();

@@ -1,27 +1,6 @@
-// add a site description @loops
-import React from 'react';
-import styled from 'styled-components';
-import { createFragmentContainer, graphql } from 'react-relay';
+function centToEuro(price) {
+  let cent = price.slice(-2);
+  let euro = price.slice(0, -2);
 
-const StyledComponent = styled.div`
-  text-align: center;
-`;
-
-const App = () => (
-  <StyledComponent>
-    {/* <p>Proper JSX commenting </p> */}
-    <input
-      name="input"
-      //  placeholder="comments properly if attributes are split"
-    />
-  </StyledComponent>
-);
-
-export default createFragmentContainer(
-App,
-graphql`
-fragment Properly_Hi on Model {
-  requestVariables
-}`
-
-);
+  return `${euro},${cent}€`;
+}
