@@ -7,3 +7,17 @@
 #menu-toggle:checked + #menu {
   display: block;
 }
+
+.page {
+  @apply max-w-6xl bg-gray-800 rounded-lg mx-auto my-16 p-16;
+}
+
+.form_text_input {
+  @apply appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight;
+}
+.form_text_input:focus {
+  @apply outline-none bg-white border-gray-500;
+}
+
+/* gray-700 */
+/* gray-900 */
