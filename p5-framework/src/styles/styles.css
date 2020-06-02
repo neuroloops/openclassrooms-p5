@@ -1,8 +1,9 @@
 @tailwind base;
+.hero {
+  background-size: cover;
+}
 
 @tailwind components;
-
-@tailwind utilities;
 
 #menu-toggle:checked + #menu {
   display: block;
@@ -19,5 +20,17 @@
   @apply outline-none bg-white border-gray-500;
 }
 
+@tailwind utilities;
+
+
+/* exemple pour du responsive */
+@responsive {
+  .hero_md {
+    background-size: 100% auto;
+  }
+  .hero_xl {
+    background-size: 100%;
+  }
+}
 /* gray-700 */
 /* gray-900 */
