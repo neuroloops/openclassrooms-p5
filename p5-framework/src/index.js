@@ -1,4 +1,5 @@
 import './styles/styles.css';
+import './styles/polaroid.css';
 import logoPath from './images/logo.svg';
 import favicon from './images/favicon.png';
 import heroPath from './images/hero.jpg';
