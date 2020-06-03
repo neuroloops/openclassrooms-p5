@@ -1,10 +1,11 @@
+process.env.NODE_ENV = 'production';
 /* eslint-disable */
 const path = require('path');
 const glob = require('glob');
 const merge = require('webpack-merge');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //extract css from each js file
 const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserJsPlugin = require('terser-webpack-plugin');
+const TerserJsPlugin = require('terser-webpack-plugin'); // This plugin uses terser to minify your JavaScript.
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 /* eslint-enable */
 const common = require('./webpack.common');
@@ -18,7 +19,7 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.(css|scss)$/,
+        test: /\.css$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -35,7 +36,6 @@ module.exports = merge(common, {
               plugins: [require('tailwindcss'), require('autoprefixer')],
             },
           },
-          'sass-loader',
         ],
       },
     ],
