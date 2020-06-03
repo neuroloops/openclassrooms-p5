@@ -11,7 +11,7 @@
     <header class="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2">
       <div class="flex-1 flex justify-between items-center">
         <a href="#">
-          <img alt="logo orinoco" id="logo" />
+          <img alt="logo orinoco" id="logo" src="../images/logo.svg" />
         </a>
       </div>
 
@@ -66,175 +66,180 @@
       </div>
     </header>
     <div class="py-20 hero" id="hero">
-      <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold mb-2 text-white" id="hero_h2"></h2>
+      <div class="container mx-auto px-6 bg-black bg-opacity-50 mx-16 rounded-lg">
+        <h2 class="text-4xl font-bold mb-2 text-white" id="hero_h2">Titre par default</h2>
         <h3 class="text-2xl mb-8 text-gray-200">
           Votre déclencheur de sourire personnalisé
         </h3>
-
         <button
-          class="bg-white font-bold rounded-full py-4 px-8 shadow-lg uppercase tracking-wider"
+          class="mb-8 bg-white font-bold rounded-full py-4 px-8 shadow-lg uppercase tracking-wider"
         >
           En savoir plus
         </button>
       </div>
     </div>
-    <div class="px-4">
-      <div class="page">
-        <h1 class="title text-2xl font-medium mb-2">Let's Build: With Tailwind CSS</h1>
-        <h2 class="font-medium text-sm text-indigo-400 mb-4 uppercase tracking-wide">
-          Responsive Navbar
-        </h2>
-        <h3 id="title">test</h3>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum illo cupiditate molestias
-        atque consequuntur ea quo cumque, odit velit sint similique? Asperiores ratione aperiam
-        tempora, alias corrupti deleniti quaerat molestiae.
+    <!-- fin hero -->
+    <div class="page flex flex-wrap">
+      <div class="w-full sm:w-1/2 md:w-1/3">
+        <img src="https://picsum.photos/id/1025/600/400" alt="" class="px-2"/>
+        </div>
+        <div class="w-full sm:w-1/2 md:w-1/3">
+        <img src="https://picsum.photos/id/1020/600/400" alt="" class="px-2" />
+      </div>
+      <div class="w-full sm:w-1/2 md:w-1/3">
+        <img src="https://picsum.photos/id/1076/600/400" alt="" class="px-2" />
+      </div>
       </div>
     </div>
-    <div class="px-4">
-      <div class="page">
+    <!-- fin page principale -->
+    <!-- debut page produit -->
+    <div class="page flex flex-col lg:flex-row">
+      <div class="lg:w-2/3 text-white lg:pl-4 px-4 py-4">
+        <img src="https://picsum.photos/id/1020/600/400" alt="" />
+      </div>
+      <div class="flex-none lg:w-1/3 lg:pr-4 px-4 py-4">
         <h2>Page produit</h2>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores ut quibusdam fugiat
+          fugit, eaque aut culpa commodi. Quidem at omnis fugiat debitis pariatur doloribus sapiente
+          impedit earum, quam, beatae in placeat recusandae labore officia? Tempore, esse earum.
+          Molestias quos quis officiis enim quod cupiditate necessitatibus optio. Dolorum eos dolore
+          adipisci, impedit quas quis saepe iure earum quod nemo culpa sint atque unde esse
+          architecto amet iusto quae nam, nulla repellat voluptatum maxime! Ipsa, distinctio eius
+          itaque numquam excepturi fuga facere totam nemo natus iusto provident asperiores
+          praesentium ea inventore id accusamus maiores neque ratione a omnis nam minus! Dolores,
+          ratione?
+        </p>
       </div>
     </div>
+
     <!-- fin page produit -->
     <!-- page panier -->
-    <div class="px-4">
-      <div class="page flex flex-col lg:flex-row">
-        <div class="lg:w-1/2 text-white lg:pl-4 lg:order-2">
-          <h2>Votre Commande</h2>
-          <table class="table-auto text-lg align-middle w-full">
-            <thead>
-              <tr>
-                <th class="px-4 py-2">Nom</th>
-                <th class="px-4 py-2">Option</th>
-                <th class="px-4 py-2">Prix</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="tableau_commande">Zurss 50S</td>
-                <td class="tableau_commande">35mm 1.4</td>
-                <td class="tableau_commande tableau_prix">499,00€</td>
-              </tr>
-              <tr>
-                <td class="tableau_commande">Franck JS 105</td>
-                <td class="tableau_commande">25mm 4.5</td>
-                <td class="tableau_commande tableau_prix">2099,00€</td>
-              </tr>
-            </tbody>
-          </table>
-          <h3 class="text-right">Total 2598,00€ TTC</h3>
-        </div>
-        <div class="flex-none lg:w-1/2 lg:pr-4">
-          <form class="items-center bg-white17 px-4 py-4 h-full">
-            <div class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-first-name"
-                >
-                  Prénom
-                </label>
 
-                <input
-                  class="form_text_input"
-                  id="grid-first-name"
-                  type="text"
-                  placeholder="Jane"
-                />
-                <p class="text-red-500 text-xs italic">Please fill out this field.</p>
-              </div>
-              <div class="w-full md:w-1/2 px-3">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-last-name"
-                >
-                  Nom
-                </label>
-                <input class="form_text_input" id="grid-last-name" type="text" placeholder="Doe" />
-              </div>
+    <div class="page flex flex-col lg:flex-row">
+      <div class="lg:w-1/2 text-white lg:pl-4 lg:order-2">
+        <h2>Votre Commande</h2>
+        <table class="table-auto text-lg align-middle w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Nom</th>
+              <th class="px-4 py-2">Option</th>
+              <th class="px-4 py-2">Prix</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tableau_commande">Zurss 50S</td>
+              <td class="tableau_commande">35mm 1.4</td>
+              <td class="tableau_commande tableau_prix">499,00€</td>
+            </tr>
+            <tr>
+              <td class="tableau_commande">Franck JS 105</td>
+              <td class="tableau_commande">25mm 4.5</td>
+              <td class="tableau_commande tableau_prix">2099,00€</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3 class="text-right">Total 2598,00€ TTC</h3>
+      </div>
+      <div class="flex-none lg:w-1/2 lg:pr-4">
+        <form class="items-center bg-white17 px-4 py-4 h-full">
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-first-name"
+              >
+                Prénom
+              </label>
+
+              <input class="form_text_input" id="grid-first-name" type="text" placeholder="Jane" />
+              <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-last-name"
+              >
+                Nom
+              </label>
+              <input class="form_text_input" id="grid-last-name" type="text" placeholder="Doe" />
+            </div>
+          </div>
+
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-email"
+              >
+                email
+              </label>
+              <input
+                class="form_text_input"
+                id="grid-email"
+                type="text"
+                placeholder="doe@email.com"
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-address"
+              >
+                Adresse
+              </label>
+              <input
+                class="form_text_input"
+                id="grid-address"
+                type="text"
+                placeholder="42, rue de la station"
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-wrap -mx-3 mb-2">
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-zip"
+              >
+                Code postal
+              </label>
+              <input class="form_text_input" id="grid-zip" type="text" placeholder="90210" />
             </div>
 
-            <div class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full px-3">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-last-name"
-                >
-                  email
-                </label>
-                <input
-                  class="form_text_input"
-                  id="grid-last-name"
-                  type="text"
-                  placeholder="doe@email.com"
-                />
-              </div>
+            <div class="w-full md:w-2/3 px-3">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-city"
+              >
+                Ville
+              </label>
+              <input class="form_text_input" id="grid-city" type="text" placeholder="Albuquerque" />
             </div>
-
-            <div class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full px-3">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-last-name"
-                >
-                  Adresse
-                </label>
-                <input
-                  class="form_text_input"
-                  id="grid-last-name"
-                  type="text"
-                  placeholder="42, rue de la station"
-                />
-              </div>
-            </div>
-
-            <div class="flex flex-wrap -mx-3 mb-2">
-              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-zip"
-                >
-                  Code postal
-                </label>
-                <input class="form_text_input" id="grid-zip" type="text" placeholder="90210" />
-              </div>
-
-              <div class="w-full md:w-2/3 px-3">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-city"
-                >
-                  Ville
-                </label>
-                <input
-                  class="form_text_input"
-                  id="grid-city"
-                  type="text"
-                  placeholder="Albuquerque"
-                />
-              </div>
-            </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
     <!-- fin de la page commande -->
-    <div class="px-4">
     <div class="page">
       <h2 class="text-center">commande bien prise en compte</h2>
 
-      <p>récapitulatif :
-        <ul>
-          <li>numero de commande : 24585940-a5a8-11ea-846a-555a65c250df</li>
-          <li>e-mail :edsa@ff.com</li>
-          <li>Nom : Dumas Ludo </li>
-          <li>adresse : 20 rue 34324 Sannois</li>
-        </ul>
-      </p>
+      <p>Récapitulatif :</p>
+      <ul>
+        <li>numero de commande : 24585940-a5a8-11ea-846a-555a65c250df</li>
+        <li>e-mail :edsa@ff.com</li>
+        <li>Nom : Dumas Ludo</li>
+        <li>adresse : 20 rue 34324 Sannois</li>
+      </ul>
+
       <p class="text-right">merci pour votre commande</p>
     </div>
-    </div>
+
     <!--  scroll menu
     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
       <label
