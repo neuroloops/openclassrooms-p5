@@ -44,9 +44,9 @@ module.exports = merge(common, {
     new MiniCssExtractPlugin({
       filename: 'css/[name]-[contenthash].css',
     }),
-    new PurgecssPlugin({
-      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-    }),
+    // new PurgecssPlugin({
+    //   paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+    // }),
   ],
   optimization: {
     minimizer: [

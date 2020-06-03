@@ -1,5 +1,4 @@
 import './styles/styles.css';
-import './styles/styles.scss';
 import logoPath from './images/logo.svg';
 import favicon from './images/favicon.png';
 import heroPath from './images/hero.jpg';
