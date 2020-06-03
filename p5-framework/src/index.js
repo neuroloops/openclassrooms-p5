@@ -2,7 +2,7 @@ import './styles/styles.css';
 import './styles/styles.scss';
 import logoPath from './images/logo.svg';
 import favicon from './images/favicon.png';
-import heroPath from './images/camera.jpg';
+import heroPath from './images/hero.jpg';
 import urlServer from './modules/secret/urlServer';
 
 const logoImg = document.getElementById('logo');
@@ -14,7 +14,7 @@ heroImg.style.backgroundImage = `url(${heroPath})`;
 
 const version = 4;
 
-document.getElementById('title').textContent = `bonjour de Webpack ${version}`;
+document.getElementById('hero_h2').textContent = `Orinoco ${version}`;
 
 fetch(urlServer)
   .then((response) => response.json())

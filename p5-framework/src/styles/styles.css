@@ -1,6 +1,14 @@
 @tailwind base;
+body {
+  @apply text-white;
+}
+h2 {
+  @apply text-white;
+}
+
 .hero {
   background-size: cover;
+  min-height: 75vh;
 }
 
 @tailwind components;
@@ -10,18 +18,22 @@
 }
 
 .page {
-  @apply max-w-6xl bg-gray-800 rounded-lg mx-auto my-16 p-16;
+  @apply max-w-6xl bg-gray17 rounded-lg mx-auto my-16 p-16;
 }
-
 .form_text_input {
-  @apply appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight;
+  @apply appearance-none bg-transparent border-b border-b-2 border-gray-500  w-full text-gray-700 mr-3 py-1 px-2 leading-tight;
 }
 .form_text_input:focus {
-  @apply outline-none bg-white border-gray-500;
+  @apply outline-none;
+}
+.tableau_commande {
+  @apply border-b text-left px-2 py-2;
 }
 
+.tableau_prix {
+  @apply text-right;
+}
 @tailwind utilities;
-
 
 /* exemple pour du responsive */
 @responsive {
@@ -29,7 +41,7 @@
     background-size: 100% auto;
   }
   .hero_xl {
-    background-size: 100%;
+    background-size: 75vh;
   }
 }
 /* gray-700 */
