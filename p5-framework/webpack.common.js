@@ -7,7 +7,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    index: './src/index.js',
+    index: ['babel-polyfill', './src/index.js'],
   },
   output: {
     filename: 'js/[name]-[contenthash].js',
