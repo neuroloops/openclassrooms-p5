@@ -21,7 +21,7 @@ h2 {
 }
 
 .page {
-  @apply max-w-6xl  bg-gray17 rounded-lg mx-auto mx-16 my-16 p-8;
+  @apply max-w-6xl  bg-gray17 rounded-lg mx-auto mx-16 my-16 p-8 mx-auto;
 }
 .form_text_input {
   @apply appearance-none bg-transparent border-b border-b-2 border-gray-500  w-full text-gray-700 mr-3 py-1 px-2 leading-tight;
@@ -37,6 +37,9 @@ h2 {
   @apply text-right;
 }
 @tailwind utilities;
+.products_polaroid {
+  min-width: 100px;
+}
 
 /* exemple pour du responsive */
 @responsive {

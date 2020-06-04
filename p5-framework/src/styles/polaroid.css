@@ -5,17 +5,16 @@ figcaption {
 #polaroid {
   width: 100%;
   overflow: hidden;
-  padding: 20px 10px;
+  padding-top: 10px;
   margin: auto;
 }
 
 #polaroid figure {
   float: left;
   position: relative;
-  /* width: 200px; */
   width: 300px;
   margin: auto;
-  margin: 25px;
+  margin: 20px;
   padding: 6px 8px 10px 8px;
   box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.75);
   background: #eee6d8;
@@ -24,9 +23,6 @@ figcaption {
   box-sizing: initial;
 }
 
-#polaroid figure:nth-child(even) {
-  transform: rotate(2deg);
-}
 #polaroid figure:before {
   content: '';
   display: block;
@@ -36,12 +32,6 @@ figcaption {
   width: 75px;
   height: 25px;
   background-color: rgba(222, 220, 198, 0.7);
-}
-#polaroid figure:nth-child(even):before {
-  left: 150px;
-  top: -15px;
-  width: 55px;
-  height: 25px;
 }
 
 #polaroid figcaption {
