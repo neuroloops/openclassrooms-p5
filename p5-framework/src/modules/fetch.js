@@ -1,7 +1,7 @@
 import urlServer from './secret/urlServer';
 
 export default (dataOperation) => {
-  (async function fetchProducts() {
+  (async () => {
     try {
       const response = await fetch(urlServer);
       if (response.ok) {
