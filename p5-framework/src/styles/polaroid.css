@@ -17,32 +17,15 @@ figcaption {
   margin: auto;
   margin: 25px;
   padding: 6px 8px 10px 8px;
-  -webkit-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.75);
   box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.75);
   background: #eee6d8;
-  background: -webkit-linear-gradient(top, #ede1c9, #fef8e2 20%, #f2ebde 60%);
-  background: -moz-linear-gradient(top, #ede1c9, #fef8e2 20%, #f2ebde 60%);
-  background: -o-linear-gradient(top, #ede1c9, #fef8e2 20%, #f2ebde 60%);
-  background: -ms-linear-gradient(top, #ede1c9, #fef8e2 20%, #f2ebde 60%);
-  background: linear-gradient(top, #ede1c9, #fef8e2 20%, #f2ebde 60%);
-  -webkit-transform: rotate(-1deg);
-  -moz-transform: rotate(-1deg);
-  -o-transform: rotate(-1deg);
-  -ms-transform: rotate(-1deg);
+  background: linear-gradient(#ede1c9, #fef8e2 20%, #f2ebde 60%);
   transform: rotate(-1deg);
   box-sizing: initial;
 }
 
 #polaroid figure:nth-child(even) {
-  -webkit-transform: rotate(2deg);
-  -moz-transform: rotate(2deg);
-  -o-transform: rotate(2deg);
-  -ms-transform: rotate(2deg);
   transform: rotate(2deg);
-  -webkit-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.75);
-  box-shadow: -4px 4px 8px -4px rgba(0, 0, 0, 0.75);
 }
 #polaroid figure:before {
   content: '';
