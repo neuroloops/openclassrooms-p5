@@ -3,14 +3,11 @@ import './styles/polaroid.css';
 import logoPath from './images/logo.svg';
 import favicon from './images/favicon.png';
 import heroPath from './images/hero.jpg';
-
+import products from './modules/products';
 import getProducts from './modules/fetch';
 
-const showProducts = (data) => {
-  console.log('affichage de data', data);
-};
 
-getProducts(showProducts);
+getProducts(products);
 
 const logoImg = document.getElementById('logo');
 logoImg.src = logoPath;

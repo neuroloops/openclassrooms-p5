@@ -2,14 +2,14 @@ figure,
 figcaption {
   display: block;
 }
-#polaroid {
+.polaroid {
   width: 100%;
   overflow: hidden;
   padding-top: 10px;
   margin: auto;
 }
 
-#polaroid figure {
+.polaroid figure {
   float: left;
   position: relative;
   width: 300px;
@@ -23,7 +23,7 @@ figcaption {
   box-sizing: initial;
 }
 
-#polaroid figure:before {
+.polaroid figure:before {
   content: '';
   display: block;
   position: absolute;
@@ -34,7 +34,7 @@ figcaption {
   background-color: rgba(222, 220, 198, 0.7);
 }
 
-#polaroid figcaption {
+.polaroid figcaption {
   text-align: center;
   font-family: 'Reenie Beanie', cursive;
   font-size: 1.5em;
@@ -42,7 +42,7 @@ figcaption {
   letter-spacing: 0.09em;
 }
 
-#polaroid img {
+.polaroid img {
   width: 300px;
   height: 300px;
 
@@ -50,10 +50,10 @@ figcaption {
   overflow: hidden;
 }
 
-#polaroid h2 {
+.polaroid h2 {
   margin-top: 0px;
   margin-bottom: 0px;
 }
-#polaroid a {
+.polaroid a {
   text-decoration: none;
 }
