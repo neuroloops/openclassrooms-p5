@@ -1,4 +1,3 @@
-
 /* eslint no-underscore-dangle: 0 */
 
 const createProduct = (product) => {
@@ -9,7 +8,7 @@ const createProduct = (product) => {
   <div class="polaroid">
     <figure>
       <a href="#product">
-        <img src=" ${product.imageUrl}" alt="${product.name}" class="px-2" />
+        <img src="${product.imageUrl}" alt="${product.name}" class="px-2" />
         <figcaption>
           <h2>${product.name}</h2>
           <span class="price">${(product.price / 100).toLocaleString('fr-FR', {

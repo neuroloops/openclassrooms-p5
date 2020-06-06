@@ -8,7 +8,7 @@ const createProduct = (product) => {
   <div class="polaroid lg:w-1/2 lg:pl-4 px-4 py-4 items-center" >
     <figure>
       <a href="#product">
-        <img src="https://picsum.photos/id/1020/600/400" alt="" />
+        <img src="${product.imageUrl}" alt="" />
         <figcaption>
           <h2>Ours</h2>
             <span class="price">400€</span>

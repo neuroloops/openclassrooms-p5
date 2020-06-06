@@ -30,21 +30,24 @@ const o = {
 
   set addToCart(x) {
     this.panier.push(x);
+    console.log('un panier', this.panier);
   },
 
   get allProductsPages() {
     return allProductsModule(this.productList);
   },
   get singleProductPage() {
-    return singleProductModule();
+    // console.log(this.productList);
+    return singleProductModule;
   },
 
   fetchProductList(x) {
-    x.map((data) => this.productList.push(data));
+    x.forEach((data) => this.productList.push(data));
     return this.allProductsPages;
   },
 };
 
 getProducts((data) => o.fetchProductList(data));
 
-
+setTimeout(() => console.log(o.productList.length), 2000);
+setTimeout(() => console.log(o.productList[0]._id), 2000);
