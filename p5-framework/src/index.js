@@ -3,11 +3,9 @@ import './styles/polaroid.css';
 import logoPath from './images/logo.svg';
 import favicon from './images/favicon.png';
 import heroPath from './images/hero.jpg';
-import products from './modules/products';
-// import product from './modules/product';
+import allProductsModule from './modules/products';
+import singleProductModule from './modules/product';
 import getProducts from './modules/fetch';
-
-// getProducts(products);
 
 const logoImg = document.getElementById('logo');
 logoImg.src = logoPath;
@@ -34,15 +32,19 @@ const o = {
     this.panier.push(x);
   },
 
-  get displayProducts() {
-    return products(this.productList);
+  get allProductsPages() {
+    return allProductsModule(this.productList);
+  },
+  get singleProductPage() {
+    return singleProductModule();
   },
 
   fetchProductList(x) {
     x.map((data) => this.productList.push(data));
-    return this.displayProducts;
+    return this.allProductsPages;
   },
 };
 
 getProducts((data) => o.fetchProductList(data));
-// product();
+
+
