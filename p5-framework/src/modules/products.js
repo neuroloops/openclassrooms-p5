@@ -18,7 +18,7 @@ const createProduct = (product) => {
         </figcaption>
       </a>
     </figure>
-  
+
 </div>
 `;
 

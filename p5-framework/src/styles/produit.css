@@ -1,0 +1,59 @@
+.product {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 1140px;
+  margin: auto;
+  padding-left: 15px;
+}
+.product img {
+  width: 100%;
+}
+
+/* // polaroid */
+.produit__photo {
+  width: 100%;
+  padding: 20px 10px 20px 0px;
+  margin: auto;
+}
+.produit__photo figure {
+  width: 100%;
+  margin: auto;
+  padding: 8px 8px 10px 8px;
+  box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.75);
+  background: #eee6d8;
+  width: 100%;
+}
+.produit__photo figcaption {
+  text-align: center;
+  font-family: 'Special Elite', cursive;
+  font-size: 1.5em;
+  color: #454f40;
+  color: #454f40;
+  font-size: 1.2em;
+  letter-spacing: 0.09em;
+}
+
+/* fin polaroid */
+.price {
+  text-align: right;
+}
+#lenses {
+  margin-top: 10px;
+  padding: 5px;
+}
+
+
+@media only screen and (min-width: 750px) {
+  .product {
+    flex-direction: row;
+    justify-content: space-around;
+    /* // align-items: baseline; */
+  }
+  .produit__photo {
+    padding-right: 40px;
+  }
+  .produit__text {
+    flex: 300px;
+  }
+}

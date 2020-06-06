@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import 'produit.css';
+@import 'polaroid.css';
+
 @tailwind base;
 body {
   @apply text-white;
@@ -19,12 +23,12 @@ h2 {
 
 .hero {
   @apply bg-center flex items-center;
-  min-height: 100vh;
+  height: calc(100vh - 58px);
 }
 
 .page {
   min-height: 90vh;
-  @apply max-w-6xl bg-gray17 rounded-lg my-16 p-8 mx-auto;
+  @apply max-w-6xl bg-gray17 rounded-lg my-16 p-8 mx-auto content-center;
 }
 .form_text_input {
   @apply appearance-none bg-transparent border-b border-b-2 border-gray-500  w-full text-gray-700 mr-3 py-1 px-2 leading-tight;
@@ -53,6 +57,6 @@ h2 {
     @applyyy;
   }
   .hero_xl {
-    background-size: 75vh;
+    background-size: 60vh;
   }
 }
