@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
 figure,
 figcaption {
   display: block;
@@ -50,9 +52,17 @@ figcaption {
   overflow: hidden;
 }
 
-.polaroid h2 {
+.polaroid h2,
+.polaroid span {
   margin-top: 0px;
   margin-bottom: 0px;
+  font-family: 'Special Elite';
+  color: #454f40;
+  font-size: 1.2em;
+  letter-spacing: 0.09em;
+}
+.polaroid span {
+  font-size: 1em;
 }
 .polaroid a {
   text-decoration: none;

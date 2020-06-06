@@ -23,7 +23,8 @@ h2 {
 }
 
 .page {
-  @apply max-w-6xl  bg-gray17 rounded-lg  my-16 p-8 mx-auto;
+  min-height: 90vh;
+  @apply max-w-6xl bg-gray17 rounded-lg my-16 p-8 mx-auto;
 }
 .form_text_input {
   @apply appearance-none bg-transparent border-b border-b-2 border-gray-500  w-full text-gray-700 mr-3 py-1 px-2 leading-tight;
@@ -49,7 +50,7 @@ h2 {
 /* exemple pour du responsive */
 @responsive {
   .hero_container_md {
-    @applyyy
+    @applyyy;
   }
   .hero_xl {
     background-size: 75vh;
