@@ -1,6 +1,7 @@
 /* eslint no-underscore-dangle: 0 */
 
 const createProduct = (product) => {
+
   const createDiv = document.createElement('div');
   createDiv.className = 'products_polaroid';
   createDiv.innerHTML = /* html */ `

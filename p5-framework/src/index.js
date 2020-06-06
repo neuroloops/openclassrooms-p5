@@ -49,5 +49,5 @@ const o = {
 
 getProducts((data) => o.fetchProductList(data));
 
-setTimeout(() => console.log(o.productList.length), 2000);
-setTimeout(() => console.log(o.productList[0]._id), 2000);
+setTimeout(() => console.log(o.productList[0]), 3000);
+setTimeout(() => singleProductModule(o.productList[0]), 4000);
