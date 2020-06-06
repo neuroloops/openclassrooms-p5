@@ -1,11 +1,10 @@
 /* eslint no-underscore-dangle: 0 */
 
 const createProduct = (product) => {
-
   const createDiv = document.createElement('div');
-  createDiv.className = 'products_polaroid';
+  createDiv.className = ' products_polaroid';
   createDiv.innerHTML = /* html */ `
-  <div class="products_polaroid">
+
   <div class="polaroid">
     <figure>
       <a href="#product">
@@ -19,7 +18,7 @@ const createProduct = (product) => {
         </figcaption>
       </a>
     </figure>
-  </div>
+  
 </div>
 `;
 

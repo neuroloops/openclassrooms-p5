@@ -1,9 +1,8 @@
 /* eslint no-underscore-dangle: 0 */
 
 const createProduct = (product) => {
-  const newDiv = document.getElementById('product_page');
-  document.getElementById('p');
-  newDiv.innerHTML = /* html */ `
+  const selectDiv = document.getElementById('product_page');
+  selectDiv.innerHTML = /* html */ `
     <div class="lg:w-2/3 lg:pl-4 px-4 py-4 items-center" id="product_page_img">
     <div class="polaroid">
       <figure>
