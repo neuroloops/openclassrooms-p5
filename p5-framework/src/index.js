@@ -24,6 +24,7 @@ const version = 4;
 
 document.getElementById('hero_h2').textContent = `Orinoco ${version}`;
 
+
 const o = {
   a: 'objet1',
   list: ['objet2', 'objet3'],
