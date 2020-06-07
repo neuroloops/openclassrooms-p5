@@ -32,7 +32,7 @@ h2 {
 
 .page {
   min-height: 90vh;
-  @apply max-w-6xl bg-gray17 rounded-lg my-16 p-8 mx-auto content-center;
+  @apply max-w-6xl bg-gray17 rounded-lg my-16 p-8 mx-auto content-center mt-24;
 }
 .form_text_input {
   @apply appearance-none bg-transparent border-b border-b-2 border-gray-500  w-full text-gray-700 mr-3 py-1 px-2 leading-tight;
