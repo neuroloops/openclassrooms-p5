@@ -1,4 +1,4 @@
-const urlServer = 'http://158.69.243.193:3000/api/cameras/';
+const urlServer = 'https://orinoco-p5.herokuapp.com/api/cameras/';
 export default (dataOperation) => {
   (async () => {
     try {
