@@ -23,7 +23,7 @@ h2 {
 
 .hero {
   @apply bg-center flex items-center;
-  height: calc(100vh - 58px);
+  height: calc(100vh);
 }
 
 .page {
@@ -46,6 +46,15 @@ h2 {
 .tableau_prix {
   @apply text-right;
 }
+.fade {
+  opacity: 0;
+  transition: opacity 0.01s;
+}
+.fade_in {
+  opacity: 1;
+  transition: opacity 2s;
+}
+
 @tailwind utilities;
 .products_polaroid {
   min-width: 100px;

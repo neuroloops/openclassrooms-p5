@@ -48,7 +48,9 @@ const o = {
   },
 };
 
-getProducts((data) => o.fetchProductList(data));
-
-setTimeout(() => console.log(o.productList[0]), 3000);
-setTimeout(() => singleProductModule(o.productList[0]), 4000);
+window.addEventListener('DOMContentLoaded', (event) => {
+  console.log('DOM entièrement chargé et analysé');
+  getProducts((data) => o.fetchProductList(data));
+  setTimeout(() => console.log(o.productList[0]), 3000);
+  setTimeout(() => singleProductModule(o.productList[0]), 4000);
+});

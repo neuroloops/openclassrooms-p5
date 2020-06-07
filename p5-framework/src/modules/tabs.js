@@ -1,12 +1,12 @@
 export default (function () {
   console.log('hello');
 
-  const afficherOnglet = function (a, animations) {
-    if (animations === undefined) {
-      animations = true;
-    }
+  const afficherOnglet = (a, animations = true) => {
     const li = a.parentNode;
-    const div = a.parentNode.parentNode.parentNode.parentNode;
+    const div = a.parentNode.parentNode;
+    console.log(div);
+    div.classList.add('hidden');
+    document.getElementById('products_page').classList.remove('hidden');
     const activeTab = div.querySelector('.tab-content.active'); // contenu actif
     const target = div.querySelector(a.getAttribute('href')); // contenu à afficher
     // console.log(activeTab);
@@ -44,15 +44,27 @@ export default (function () {
     });
   }
 
-  let hashChange = function (e) {
-    let hash = window.location.hash;
+  const hashChange = function (e) {
+    const { hash } = window.location;
+    console.log(hash);
 
-    let a = document.querySelector('a[href="' + hash + '"]');
+    if (hash === '#products_page') {
+      console.log('hash', hash);
 
-    if (a !== null && !a.parentNode.classList.contains('active')) {
-      afficherOnglet(a, e !== undefined);
+      document.getElementById('products_page_hidden').classList.remove('hidden');
+      document
+        .getElementById('products_page')
+        .classList.add('transition', 'delay-150', 'duration-300', 'opacity-100');
+      document.getElementById('hero').classList.add('hidden');
+    } else {
+      document.getElementById('products_page_hidden').classList.add('hidden');
+      document.getElementById('hero').classList.remove('hidden');
+      document
+        .getElementById('products_page')
+        .classList.remove('transition', 'delay-150', 'duration-300', 'opacity-100');
     }
   };
   window.addEventListener('hashchange', hashChange);
+
   hashChange();
 })();

@@ -8,7 +8,9 @@
   </head>
 
   <body class="antialiased bg-black">
-    <header class="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2">
+    <header
+      class="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2 w-full top-0 fixed z-40"
+    >
       <div class="flex-1 flex justify-between items-center">
         <a href="#">
           <img alt="logo orinoco" id="logo" src="../images/logo.svg" />
@@ -72,16 +74,20 @@
         <h3 class="text-2xl mb-8 text-gray-200">
           Votre déclencheur de sourire personnalisé
         </h3>
-        <button
-          class="mb-8 bg-purple-600 font-bold rounded-full py-4 px-8 shadow-lg uppercase tracking-wider"
+        <a href="#products_page">
+          <button
+            class="mb-8 bg-purple-600 font-bold rounded-full py-4 px-8 shadow-lg uppercase tracking-wider"
+          >
+            En savoir plus
+          </button></a
         >
-          En savoir plus
-        </button>
       </div>
     </div>
 
     <!-- fin hero -->
-    <div class="hidden page flex flex-wrap justify-around" id="products_page"></div>
+    <div class="hidden" id="products_page_hidden">
+      <div class="page flex flex-wrap justify-around opacity-0" id="products_page"></div>
+    </div>
     <!-- fin page principale -->
     <!-- debut page produit -->
     <div class="hidden page flex flex-wrap" id="product_page"></div>
