@@ -1,19 +1,24 @@
 import './styles/styles.css';
-
 import logoPath from './images/logo.svg';
 import favicon from './images/favicon.png';
 import heroPath from './images/hero.jpg';
+
 import allProductsModule from './modules/products';
 import singleProductModule from './modules/product';
 import getProducts from './modules/fetch';
 import './modules/tabs';
+// icons
+import homeIcon from './images/home.svg';
+import cartIcon from './images/shopping-cart.svg';
+import productsIcon from './images/store-front.svg';
 
-const logoImg = document.getElementById('logo');
-logoImg.src = logoPath;
-const faviconImg = document.getElementById('favicon');
-faviconImg.href = favicon;
-const heroImg = document.getElementById('hero');
-heroImg.style.backgroundImage = `url(${heroPath})`;
+document.getElementById('homeIcon').src = homeIcon;
+document.getElementById('cartIcon').src = cartIcon;
+document.getElementById('productsIcon').src = productsIcon;
+
+document.getElementById('logo').src = logoPath;
+document.getElementById('favicon').href = favicon;
+document.getElementById('hero').style.backgroundImage = `url(${heroPath})`;
 
 const version = 4;
 

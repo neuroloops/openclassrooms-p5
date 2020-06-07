@@ -25,6 +25,10 @@ h2 {
   @apply bg-center flex items-center;
   height: calc(100vh);
 }
+.icon {
+  height: 2em;
+  @apply inline;
+}
 
 .page {
   min-height: 90vh;
@@ -58,14 +62,4 @@ h2 {
 @tailwind utilities;
 .products_polaroid {
   min-width: 100px;
-}
-
-/* exemple pour du responsive */
-@responsive {
-  .hero_container_md {
-    @applyyy;
-  }
-  .hero_xl {
-    background-size: 60vh;
-  }
 }
