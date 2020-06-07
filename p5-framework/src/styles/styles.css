@@ -26,8 +26,8 @@ h2 {
   height: calc(100vh);
 }
 .icon {
-  height: 2em;
-  @apply inline;
+  /* height: 2em; */
+  @apply inline pr-1 h-8;
 }
 
 .page {
