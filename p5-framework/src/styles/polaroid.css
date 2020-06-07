@@ -1,0 +1,69 @@
+
+
+figure,
+figcaption {
+  display: block;
+}
+.polaroid {
+  width: 100%;
+  overflow: hidden;
+  padding-top: 10px;
+  margin: auto;
+}
+
+.polaroid figure {
+  float: left;
+  position: relative;
+  width: 300px;
+  margin: auto;
+  margin: 20px;
+  padding: 6px 8px 10px 8px;
+  box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.75);
+  background: #eee6d8;
+  background: linear-gradient(#ede1c9, #fef8e2 20%, #f2ebde 60%);
+  transform: rotate(-1deg);
+  box-sizing: initial;
+}
+
+.polaroid figure:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 5px;
+  top: -15px;
+  width: 75px;
+  height: 25px;
+  background-color: rgba(222, 220, 198, 0.7);
+}
+
+.polaroid figcaption {
+  text-align: center;
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 1.5em;
+  color: #454f40;
+  letter-spacing: 0.09em;
+}
+
+.polaroid img {
+  width: 300px;
+  height: 300px;
+
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.polaroid h2,
+.polaroid span {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-family: 'Special Elite';
+  color: #454f40;
+  font-size: 1.2em;
+  letter-spacing: 0.09em;
+}
+.polaroid span {
+  font-size: 1em;
+}
+.polaroid a {
+  text-decoration: none;
+}

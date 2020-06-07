@@ -5,3 +5,9 @@ p6/front/
 p6/back/secret/tokenKey.js
 p6/back/secret/mongoLogin.js
 p6/back/Sopekocko.md
+p6/front
+p5-framework/dist/
+
+p5-framework/src/modules/secret/urlServer.js
+p5-framework/todo.md
+p5-framework/test

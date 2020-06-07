@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import 'produit.css';
+@import 'polaroid.css';
+
+@tailwind base;
+body {
+  @apply text-white;
+}
+h1 {
+  @apply text-2xl font-medium mb-2;
+}
+h2 {
+  @apply text-white;
+}
+
+@tailwind components;
+#menu-toggle:checked + #menu {
+  display: block;
+}
+#hero_container {
+  @apply max-w-6xl px-40 py-12 bg-black bg-opacity-50  rounded-lg  mx-auto;
+}
+
+.hero {
+  @apply bg-center flex items-center;
+  height: calc(100vh);
+}
+
+.page {
+  min-height: 90vh;
+  @apply max-w-6xl bg-gray17 rounded-lg my-16 p-8 mx-auto content-center;
+}
+.form_text_input {
+  @apply appearance-none bg-transparent border-b border-b-2 border-gray-500  w-full text-gray-700 mr-3 py-1 px-2 leading-tight;
+}
+.form_text_input:focus {
+  @apply outline-none;
+}
+.form_text_input::placeholder {
+  @apply text-gray-600;
+}
+.tableau_commande {
+  @apply border-b text-left px-2 py-2;
+}
+
+.tableau_prix {
+  @apply text-right;
+}
+.fade {
+  opacity: 0;
+  transition: opacity 0.01s;
+}
+.fade_in {
+  opacity: 1;
+  transition: opacity 2s;
+}
+
+@tailwind utilities;
+.products_polaroid {
+  min-width: 100px;
+}
+
+/* exemple pour du responsive */
+@responsive {
+  .hero_container_md {
+    @applyyy;
+  }
+  .hero_xl {
+    background-size: 60vh;
+  }
+}
