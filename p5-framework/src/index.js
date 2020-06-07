@@ -18,12 +18,11 @@ document.getElementById('productsIcon').src = productsIcon;
 
 document.getElementById('logo').src = logoPath;
 document.getElementById('favicon').href = favicon;
-document.getElementById('hero').style.backgroundImage = `url(${heroPath})`;
+document.getElementById('home').style.backgroundImage = `url(${heroPath})`;
 
 const version = 4;
 
 document.getElementById('hero_h2').textContent = `Orinoco ${version}`;
-
 
 const o = {
   a: 'objet1',

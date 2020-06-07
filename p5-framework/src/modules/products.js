@@ -7,7 +7,7 @@ const createProduct = (product) => {
 
   <div class="polaroid">
     <figure>
-      <a href="#product">
+      <a href="#product_page_link">
         <img src="${product.imageUrl}" alt="${product.name}" class="px-2" />
         <figcaption>
           <h2>${product.name}</h2>
