@@ -1,5 +1,4 @@
-import urlServer from './secret/urlServer';
-
+const urlServer = 'https://orinoco-p5.herokuapp.com/api/cameras/';
 export default (dataOperation) => {
   (async () => {
     try {
